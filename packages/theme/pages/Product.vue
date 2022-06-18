@@ -27,21 +27,10 @@
           <SfPrice
             :regular="$n(productGetters.getPrice(product).regular, 'currency')"
           />
-          <div>
-            <div class="product__rating">
-              <SfRating
-                :score="averageRating"
-                :max="5"
-              />
-              <a v-if="!!totalReviews" href="#" class="product__count">
-                ({{ totalReviews }})
-              </a>
-            </div>
-            <SfButton class="sf-button--text">{{ $t('Read all reviews') }}</SfButton>
-          </div>
         </div>
         <div>
-          <div class="product__description desktop-only" v-html="productGetters.getDescription(product)"></div>
+          <div class="product__description" v-html="productGetters.getDescription(product)">
+          </div>
           <div v-if="options && options.length">
             <SfSelect
               v-for="optionGroup in options"
@@ -89,58 +78,10 @@
                 </template>
               </SfProperty>
             </SfTab>
-            <SfTab :title="$t('Read reviews')">
-              <SfReview
-                v-for="review in reviews"
-                :key="reviewGetters.getReviewId(review)"
-                :author="reviewGetters.getReviewAuthor(review)"
-                :date="reviewGetters.getReviewDate(review)"
-                :message="reviewGetters.getReviewMessage(review)"
-                :max-rating="5"
-                :rating="reviewGetters.getReviewRating(review)"
-                :char-limit="250"
-                :read-more-text="$t('Read more')"
-                :hide-full-text="$t('Read less')"
-                class="product__review"
-              />
-            </SfTab>
-            <SfTab
-              :title="$t('Additional Information')"
-              class="product__additional-info"
-            >
-            <div class="product__additional-info">
-              <p class="product__additional-info__title">{{ $t('Brand') }}</p>
-              <p>{{ brand }}</p>
-              <p class="product__additional-info__title">{{ $t('Instruction1') }}</p>
-              <p class="product__additional-info__paragraph">
-                {{ $t('Instruction2') }}
-              </p>
-              <p class="product__additional-info__paragraph">
-                {{ $t('Instruction3') }}
-              </p>
-              <p>{{ careInstructions }}</p>
-            </div>
-            </SfTab>
           </SfTabs>
         </LazyHydrate>
       </div>
     </div>
-
-    <LazyHydrate when-visible>
-      <RelatedProducts
-        :products="relatedProducts"
-        :loading="relatedLoading"
-        title="Related Products"
-      />
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <InstagramFeed />
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <MobileStoreBanner />
-    </LazyHydrate>
 
   </div>
 </template>
@@ -168,7 +109,7 @@ import {
 import InstagramFeed from '~/components/InstagramFeed.vue';
 import RelatedProducts from '~/components/RelatedProducts.vue';
 import { ref, computed } from '@vue/composition-api';
-import { useProduct, useCart, productGetters, useReview, reviewGetters, useRelatedProducts } from '@vue-storefront/vendure';
+import { useProduct, useCart, useRelatedProducts, productGetters, useReview, reviewGetters } from '@vue-storefront/vendure';
 import { onSSR } from '@vue-storefront/core';
 import MobileStoreBanner from '~/components/MobileStoreBanner.vue';
 import LazyHydrate from 'vue-lazy-hydration';
@@ -181,9 +122,9 @@ export default {
     const qty = ref(1);
     const { id } = context.root.$route.params;
     const { products, search } = useProduct('products');
+    const { relatedProducts, load: searchRelatedProducts, loading: relatedLoading } = useRelatedProducts();
     const { addItem, loading } = useCart();
     const { reviews: productReviews, search: searchReviews } = useReview('productReviews');
-    const { relatedProducts, load: searchRelatedProducts, loading: relatedLoading } = useRelatedProducts();
 
     const product = computed(() => productGetters.getByFilters(products.value, { master: true, attributes: context.root.$route.query }));
     const options = computed(() => productGetters.getOptions(products.value, ['color', 'size']));
@@ -192,14 +133,6 @@ export default {
     const configuration = ref({});
 
     const properties = computed(() => [
-      {
-        name: 'ID',
-        value: productGetters.getId(product.value)
-      },
-      {
-        name: 'Slug',
-        value: productGetters.getSlug(product.value)
-      },
       {
         name: 'SKU',
         value: productGetters.getSku(product.value)
@@ -211,6 +144,7 @@ export default {
     ]);
 
     const breadcrumbs = computed(() => productGetters.getBreadcrumbs(product.value));
+
     const productGallery = computed(() => productGetters.getGallery(product.value).map(img => ({
       mobile: { url: img.small },
       desktop: { url: img.normal },
@@ -255,6 +189,7 @@ export default {
       relatedLoading,
       options,
       qty,
+      addItem,
       loading,
       productGetters,
       productGallery,

@@ -169,25 +169,20 @@ import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 import { reactive, computed, watch } from '@vue/composition-api';
 import { COUNTRIES } from '~/helpers';
 import '@/helpers';
-
 extend('required', {
   ...required,
   message: 'This field is required'
 });
-
 extend('min', {
   ...min,
   message: 'The field should have at least {length} characters'
 });
-
 extend('oneOf', {
   ...oneOf,
   message: 'Invalid country'
 });
-
 export default {
   name: 'BillingAddressForm',
-
   components: {
     SfInput,
     SfButton,
@@ -196,7 +191,6 @@ export default {
     ValidationProvider,
     ValidationObserver
   },
-
   props: {
     address: {
       type: Object,
@@ -219,7 +213,6 @@ export default {
       required: true
     }
   },
-
   setup(props, { emit }) {
     const form = reactive({
       id: props.address.id,
@@ -234,7 +227,6 @@ export default {
       phone: props.address.phone,
       isDefault: props.address.isDefault
     });
-
     const submitForm = () => {
       emit('submit', {
         form,
@@ -243,7 +235,6 @@ export default {
         onError: () => {}
       });
     };
-
     const statesInSelectedCountry = computed(() => {
       if (!form.country) {
         return null;
@@ -251,19 +242,16 @@ export default {
       const selectedCountry = COUNTRIES.find(country => country.label === form.country);
       return selectedCountry && selectedCountry.states;
     });
-
     const validationRules = {
       country: `required|oneOf:${COUNTRIES.map(c => c.key).join(',')}`,
       state: !statesInSelectedCountry ? null : 'required|min:2'
     };
-
     watch(statesInSelectedCountry, statesInSelectedCountry => {
       const countryHasStates = statesInSelectedCountry && statesInSelectedCountry.length;
       if (!countryHasStates && form.state) {
         form.state = null;
       }
     });
-
     return {
       form,
       validationRules,

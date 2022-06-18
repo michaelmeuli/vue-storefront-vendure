@@ -86,7 +86,6 @@ import {
 import { computed } from '@vue/composition-api';
 import { useWishlist, useUser, wishlistGetters } from '@vue-storefront/vendure';
 import { useUiState } from '~/composables';
-
 export default {
   name: 'Wishlist',
   components: {
@@ -106,9 +105,7 @@ export default {
     const products = computed(() => wishlistGetters.getItems(wishlist.value));
     const totals = computed(() => wishlistGetters.getTotals(wishlist.value));
     const totalItems = computed(() => wishlistGetters.getTotalItems(wishlist.value));
-
     loadWishlist();
-
     return {
       isAuthenticated,
       products,
@@ -130,7 +127,6 @@ export default {
   --sidebar-top-padding: var(--spacer-lg) var(--spacer-base) 0 var(--spacer-base);
   --sidebar-content-padding: var(--spacer-lg) var(--spacer-base);
 }
-
 .my-wishlist {
   flex: 1;
   display: flex;
@@ -188,16 +184,13 @@ export default {
     justify-content: space-between;
   }
 }
-
 .sidebar-bottom {
   margin: auto 0 0 0;
 }
-
 .collected-product {
   margin: var(--spacer-base) 0;
   &__properties {
     margin: var(--spacer-sm) 0 0 0;
   }
 }
-
 </style>

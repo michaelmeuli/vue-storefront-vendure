@@ -39,6 +39,7 @@ const useUiHelpers = () => {
     } else {
       sortOptions.name = query.sort?.split('_')[1];
     }
+
     const take = parseInt(query.itemsPerPage, 10) || 20;
 
     return {

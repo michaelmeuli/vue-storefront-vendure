@@ -55,35 +55,28 @@ import EmailUpdateForm from '~/components/MyAccount/EmailUpdateForm';
 import { SfTabs, SfInput, SfButton } from '@storefront-ui/vue';
 import { useUser, userGetters } from '@vue-storefront/vendure';
 import { onMounted } from '@vue/composition-api';
-
 extend('email', {
   ...email,
   message: 'Invalid email'
 });
-
 extend('required', {
   ...required,
   message: 'This field is required'
 });
-
 extend('min', {
   ...min,
   message: 'The field should have at least {length} characters'
 });
-
 extend('password', {
   validate: value => String(value).length >= 8 && String(value).match(/[A-Za-z]/gi) && String(value).match(/[0-9]/gi),
   message: 'Password must have at least 8 characters including one letter and a number'
 });
-
 extend('confirmed', {
   ...confirmed,
   message: 'Passwords don\'t match'
 });
-
 export default {
   name: 'PersonalDetails',
-
   components: {
     SfTabs,
     SfInput,
@@ -92,12 +85,9 @@ export default {
     PasswordResetForm,
     EmailUpdateForm
   },
-
   setup() {
     const { updateUser, changePassword, user, load, updateEmail } = useUser();
-
     const currentEmail = userGetters.getEmailAddress(user.value);
-
     const formHandler = async (fn, onComplete, onError) => {
       try {
         const data = await fn();
@@ -106,15 +96,12 @@ export default {
         onError(error);
       }
     };
-
     const updatePersonalData = ({ form, onComplete, onError }) => formHandler(() => updateUser({ user: form.value }), onComplete, onError);
     const updateEmailData = ({ form, onComplete, onError }) => formHandler(() => updateEmail({ password: form.value.password, newEmail: form.value.email }), onComplete, onError);
     const updatePassword = ({ form, onComplete, onError }) => formHandler(() => changePassword({ currentPassword: form.value.currentPassword, newPassword: form.value.newPassword }), onComplete, onError);
-
     onMounted(async () => {
       await load();
     });
-
     return {
       currentEmail,
       updatePersonalData,
@@ -143,5 +130,4 @@ export default {
   margin: var(--spacer-lg) 0 0 0;
   font-size: var(--font-size--sm);
 }
-
 </style>

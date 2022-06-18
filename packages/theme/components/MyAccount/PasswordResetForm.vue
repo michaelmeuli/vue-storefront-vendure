@@ -53,41 +53,33 @@
 import { ref } from '@vue/composition-api';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { SfInput, SfButton } from '@storefront-ui/vue';
-
 export default {
   name: 'PasswordResetForm',
-
   components: {
     SfInput,
     SfButton,
     ValidationProvider,
     ValidationObserver
   },
-
   setup(_, { emit }) {
     const resetForm = () => ({
       currentPassword: '',
       newPassword: '',
       repeatPassword: ''
     });
-
     const form = ref(resetForm());
-
     const submitForm = (resetValidationFn) => {
       return () => {
         const onComplete = () => {
           form.value = resetForm();
           resetValidationFn();
         };
-
         const onError = () => {
           // TODO: Handle error
         };
-
         emit('submit', { form, onComplete, onError });
       };
     };
-
     return {
       form,
       submitForm

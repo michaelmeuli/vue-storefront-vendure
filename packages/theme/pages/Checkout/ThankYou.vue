@@ -5,8 +5,8 @@
       class="banner"
       :title="$t('Thank you for your order!')"
       :image="{
-        mobile: '/thankyou/bannerM.png',
-        desktop: '/thankyou/bannerD.png',
+        mobile: '/thankyou/bannerMyl.png',
+        desktop: '/thankyou/bannerDyl.png',
       }"
     >
       <template #description>
@@ -16,84 +16,105 @@
         </div>
       </template>
     </SfCallToAction>
-    <section class="section">
-      <div class="order">
-        <SfHeading
-          :title="$t('Your Purchase')"
-          class="order__heading heading sf-heading--left"
-          :level="3"
-        />
-        <p class="order__paragraph paragraph">
-          {{ $t('Successful placed order') }}
-        </p>
-        <div class="order__contact">
-          <SfHeading
-            :level="6"
-            class="heading sf-heading--left sf-heading--no-underline"
-            :title="$t('Primary contacts for any questions')"
-          />
-          <div class="contact">
-            <p class="contact__name">{{ address.name }}</p>
-            <p class="contact__street">{{ address.street }}</p>
-            <p class="contact__city">{{ address.city }}</p>
-            <p class="contact__email">{{ address.email }}</p>
-          </div>
-        </div>
-        <SfButton class="order__notifications-button button-size"
-          >{{ $t('Allow order notifications') }}</SfButton
-        >
-      </div>
-      <div class="additional-info">
-        <div>
-          <SfHeading
-            :title="$t('Your Account')"
-            class="heading sf-heading--left"
-            :level="3"
-          />
-          <p class="paragraph">
-            {{ $t('Info after order') }}
-          </p>
-        </div>
-        <div>
-          <SfHeading
-            :title="$t('What can we improve')"
-            class="heading sf-heading--left"
-            :level="3"
-          />
-          <p class="paragraph">
-            {{ $t('Feedback') }}
-          </p>
-          <SfButton
-            class="feedback-button color-secondary sf-button--full-width button-size"
-            >{{ $t('Send my feedback') }}</SfButton
-          >
-        </div>
-      </div>
-    </section>
+
+    <div v-if="isSwissqrinvoice" class="invoice">
+      <pdf :src="url"></pdf>
+      <a :href="url" target="_blank">
+        <SfButton class="download_qr-bill-button button-size">
+          Download QR-Rechnung
+        </SfButton>
+      </a>
+      <p>
+        Die QR-Rechnung wurde dir auch per E-Mail geschickt und kann bequem mit ihrer Banken-App eingelesen werden.
+      </p>
+      <p>
+        Eventuell landete die QR-Rechnung per E-Mail im Spam Ordner.
+      </p>
+      <p>
+        Die Ware wird sofort nach Bestelleingang reserviert.
+      </p>
+      <p>
+        Der Versand erfolgt nach Zahlungseingang.
+      </p>
+      <p>
+        Bei Fragen wenden Sie sich bitte an: yoga.lichtquelle@gmail.com
+      </p>
+
+    </div>
+
     <SfButton link="/" class="sf-button back-button color-secondary button-size">{{ $t('Back to homepage') }}</SfButton>
   </div>
 </template>
 
 <script>
 import { SfHeading, SfButton, SfCallToAction } from '@storefront-ui/vue';
+import { PDF, BlobStream } from 'swissqrbill';
+import { useShipping, userShippingGetters } from '@vue-storefront/vendure';
+import { ref, reactive, onMounted, computed } from '@vue/composition-api';
+import pdf from 'vue-pdf';
+
 export default {
   components: {
     SfHeading,
     SfButton,
-    SfCallToAction
+    SfCallToAction,
+    pdf
   },
   name: 'ThankYou',
   setup(props, context) {
+    const { shipping: shippingDetails, load: loadShipping } = useShipping();
+    const url = ref('');
+
+    const getShippingDetails = async () => {
+      if (!shippingDetails.value) {
+        await loadShipping();
+      }
+    };
+    getShippingDetails();
+    console.log(shippingDetails.value);
+
+    const data = {
+      currency: 'CHF',
+      amount: parseFloat(context.root.$route.query.total),
+      additionalInformation: context.root.$route.query.order,
+      creditor: {
+        name: 'Jessica Meuli',
+        address: 'Sonnenhaldenstrasse 5',
+        zip: 8360,
+        city: 'Wallenwil',
+        account: 'CH14 0078 1612 4519 5200 2',
+        country: 'CH',
+      },
+      debtor: {
+        name: shippingDetails.value.fullName || '',
+        address: shippingDetails.value.streetLine1 || '',
+        zip: shippingDetails.value.postalCode || '',
+        city: shippingDetails.value.city || '',
+        country: 'CH',
+      },
+    }
+
+    const stream = new BlobStream();
+    const pdf = new PDF(data, stream);
+    pdf.on('finish', () => {
+      url.value = stream.toBlobURL('application/pdf');
+    });
+
+    const isSwissqrinvoice = context.root.$route.query.payway === 'swissqrinvoice';
+
     return {
       address: {
-        name: 'Company Headquarter',
-        street: 'St. Main 17, 53-534',
-        city: 'Wroclaw, Poland',
-        email: 'demo@vuestorefront.io'
+        name: 'Jessica Meuli',
+        street: 'Sonnenhaldenstrasse 5',
+        city: '8360 Wallenwil',
+        email: 'yoga.lichtquelle@gmail.com'
       },
       order: {
         number: `#${context.root.$route.query.order}`
-      }
+      },
+      isSwissqrinvoice,
+      data,
+      url
     };
   }
 };
@@ -258,5 +279,11 @@ export default {
   @include for-desktop {
     --button-width: 25rem;
   }
+}
+.download_qr-bill-button {
+  margin: 2rem auto 3.75rem;
+}
+.invoice {
+  text-align: center;
 }
 </style>

@@ -12,7 +12,7 @@
           key="results"
         >
          <SfMegaMenuColumn
-            title="Categories"
+            title="Kategorien"
             class="sf-mega-menu-column--pined-content-on-mobile search__categories"
           >
            <template #title="{title}">
@@ -36,7 +36,7 @@
            </SfList>
          </SfMegaMenuColumn>
          <SfMegaMenuColumn
-            title="Product suggestions"
+            title="Produktvorschläge"
             class="sf-mega-menu-column--pined-content-on-mobile search__results"
           >
            <template #title="{title}">
@@ -118,7 +118,6 @@ import {
 } from '@storefront-ui/vue';
 import { ref, watch, computed } from '@nuxtjs/composition-api';
 import { productGetters } from '@vue-storefront/vendure';
-
 export default {
   name: 'SearchResults',
   components: {
@@ -150,7 +149,6 @@ export default {
     const categories = computed(() => {
       return props.result?.value?.data?.collections;
     });
-
     watch(() => props.visible, (newVal) => {
       isSearchOpen.value = newVal;
       if (isSearchOpen.value) {
@@ -160,7 +158,6 @@ export default {
         emit('removeSearchResults');
       }
     });
-
     return {
       isSearchOpen,
       productGetters,
@@ -257,7 +254,6 @@ export default {
    margin: var(--spacer-2xs) 0;
  }
 }
-
 .before-results {
  box-sizing: border-box;
  padding: var(--spacer-base) var(--spacer-sm) var(--spacer-2xl);

@@ -1,84 +1,36 @@
 <template>
   <div id="home">
-    <LazyHydrate when-idle>
-      <SfHero class="hero">
-        <SfHeroItem
-          v-for="(hero, i) in heroes"
-          :key="i"
-          :title="hero.title"
-          :subtitle="hero.subtitle"
-          :background="hero.background"
-          :image="hero.image"
-          :class="hero.className"
-        />
-      </SfHero>
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <SfBannerGrid :banner-grid="1" class="banner-grid">
-        <template v-for="item in banners" v-slot:[item.slot]>
-          <SfBanner
-            :key="item.slot"
-            :title="item.title"
-            :subtitle="item.subtitle"
-            :description="item.description"
-            :button-text="item.buttonText"
-            :link="localePath(item.link)"
-            :image="item.image"
-            :class="item.class"
+    <div class="cards">
+      <div class="card">
+        <LazyHydrate when-visible>
+          <SfCard
+            :title="card1.title"
+            :titleLevel="card1.titleLevel"
+            :image="card1.image"
+            :imageWidth="card1.imageWidth"
+            :imageHeight="card1.imageHeight"
+            :description="card1.description"
+            :link="card1.link"
+            :buttonText="card1.buttonText"
           />
-        </template>
-      </SfBannerGrid>
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <div class="similar-products">
-        <SfHeading title="Match with it" :level="2"/>
-        <nuxt-link :to="localePath('/c/women')" class="smartphone-only">See all</nuxt-link>
+        </LazyHydrate>
       </div>
-    </LazyHydrate>
 
-    <LazyHydrate when-visible>
-        <SfCarousel class="carousel" :settings="{ peek: 16, breakpoints: { 1023: { peek: 0, perView: 2 } } }">
-          <template #prev="{go}">
-            <SfArrow
-              aria-label="prev"
-              class="sf-arrow--left sf-arrow--long"
-              @click="go('prev')"
-            />
-          </template>
-          <template #next="{go}">
-            <SfArrow
-              aria-label="next"
-              class="sf-arrow--right sf-arrow--long"
-              @click="go('next')"
-            />
-          </template>
-          <SfCarouselItem class="carousel__item" v-for="(product, i) in products" :key="i">
-            <SfProductCard
-              :title="product.productName"
-              :image="product.productAsset.preview"
-              :regular-price="$n(getCalculatedPrice(product.price.value), 'currency')"
-              :link="localePath(`/p/${product.productId}/${product.slug}`)"
-              class="carousel__item__product"
-            />
-          </SfCarouselItem>
-        </SfCarousel>
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <SfCallToAction
-        title="Subscribe to Newsletters"
-        description="Be aware of upcoming sales and events. Receive gifts and special offers!"
-        image="/homepage/newsletter.webp"
-        class="call-to-action"
-      />
-    </LazyHydrate>
-
-    <LazyHydrate when-visible>
-      <InstagramFeed />
-    </LazyHydrate>
-
+      <div class="card">
+        <LazyHydrate when-visible>
+          <SfCard
+            :title="card2.title"
+            :titleLevel="card2.titleLevel"
+            :image="card2.image"
+            :imageWidth="card2.imageWidth"
+            :imageHeight="card2.imageHeight"
+            :description="card2.description"
+            :link="card2.link"
+            :buttonText="card2.buttonText"
+          />
+        </LazyHydrate>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -93,22 +45,18 @@ import {
   SfBannerGrid,
   SfHeading,
   SfArrow,
-  SfButton
+  SfButton,
+  SfCard
 } from '@storefront-ui/vue';
 import InstagramFeed from '~/components/InstagramFeed.vue';
 import LazyHydrate from 'vue-lazy-hydration';
-import cacheControl from './../helpers/cacheControl';
 import { useContext, computed } from '@nuxtjs/composition-api';
 import { useFacet } from '@vue-storefront/vendure';
 import { onSSR } from '@vue-storefront/core';
 import { getCalculatedPrice } from '~/helpers';
 
 export default {
-  name: 'Home',
-  middleware: cacheControl({
-    'max-age': 60,
-    'stale-when-revalidate': 5
-  }),
+  name: "Home",
   components: {
     InstagramFeed,
     SfHero,
@@ -122,76 +70,34 @@ export default {
     SfHeading,
     SfArrow,
     SfButton,
-    LazyHydrate
+    LazyHydrate,
+    SfCard,
   },
   setup() {
 
     const { $config } = useContext();
-    const heroes = [
-      {
-        title: 'Colorful summer dresses are already in store',
-        subtitle: 'SUMMER COLLECTION 2019',
-        background: '#eceff1',
-        image: '/homepage/bannerH.webp'
-      },
-      {
-        title: 'Colorful summer dresses are already in store',
-        subtitle: 'SUMMER COLLECTION 2019',
-        background: '#efebe9',
-        image: '/homepage/bannerA.webp',
-        className:
-            'sf-hero-item--position-bg-top-left sf-hero-item--align-right'
-      },
-      {
-        title: 'Colorful summer dresses are already in store',
-        subtitle: 'SUMMER COLLECTION 2019',
-        background: '#fce4ec',
-        image: '/homepage/bannerB.webp'
-      }
-    ];
-    const banners = [
-      {
-        slot: 'banner-A',
-        subtitle: 'Dresses',
-        title: 'Cocktail & Party',
-        description:
-            'Find stunning women\'s cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses from all your favorite brands.',
-        buttonText: 'Shop now',
-        image: {
-          mobile: $config.theme.home.bannerA.image.mobile,
-          desktop: $config.theme.home.bannerA.image.desktop
-        },
-        class: 'sf-banner--slim desktop-only',
-        link: $config.theme.home.bannerA.link
-      },
-      {
-        slot: 'banner-B',
-        subtitle: 'Dresses',
-        title: 'Linen Dresses',
-        description:
-            'Find stunning women\'s cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses from all your favorite brands.',
-        buttonText: 'Shop now',
-        image: $config.theme.home.bannerB.image,
-        class: 'sf-banner--slim banner-central desktop-only',
-        link: $config.theme.home.bannerB.link
-      },
-      {
-        slot: 'banner-C',
-        subtitle: 'T-Shirts',
-        title: 'The Office Life',
-        image: $config.theme.home.bannerC.image,
-        class: 'sf-banner--slim banner__tshirt',
-        link: $config.theme.home.bannerC.link
-      },
-      {
-        slot: 'banner-D',
-        subtitle: 'Summer Sandals',
-        title: 'Eco Sandals',
-        image: $config.theme.home.bannerD.image,
-        class: 'sf-banner--slim',
-        link: $config.theme.home.bannerD.link
-      }
-    ];
+    const card1 = {
+      title: "Öl Singles",
+      titleLevel: 3,
+      image: "/homepage/card1.jpg",
+      imageWidth: 340,
+      imageHeight: 300,
+      description:
+        "Extrakte aus Pflanzen mit erstaunlichen Vorteilen. Natürlich und einfach in der Anwendung.",
+      link: "/c/atherische-ole/einzelole?sort=NAME_ASC",
+      buttonText: "Öl Singles",
+    }
+    const card2 = {
+      title: "Gemischte Öle",
+      titleLevel: 3,
+      image: "/homepage/card2.jpg",
+      imageWidth: 340,
+      imageHeight: 300,
+      description:
+        "Extrakte aus Pflanzen mit erstaunlichen Vorteilen. Natürlich und einfach in der Anwendung.",
+      link: "/c/atherische-ole/olmischungen?sort=NAME_ASC",
+      buttonText: "Gemischte Öle",
+    }
     const { search, result } = useFacet();
 
     onSSR(async () => {
@@ -201,8 +107,8 @@ export default {
     const products = computed(() => result.value.data.items);
 
     return {
-      heroes,
-      banners,
+      card1,
+      card2,
       products,
       getCalculatedPrice
     };
@@ -243,7 +149,8 @@ export default {
     }
   }
   ::v-deep .sf-hero__control {
-    &--right, &--left {
+    &--right,
+    &--left {
       display: none;
     }
   }
@@ -307,7 +214,7 @@ export default {
 }
 
 .carousel {
-    margin: 0 calc(-1 * var(--spacer-sm)) 0 0;
+  margin: 0 calc(-1 * var(--spacer-sm)) 0 0;
   @include for-desktop {
     margin: 0;
   }
@@ -322,9 +229,20 @@ export default {
   }
   ::v-deep .sf-arrow--long .sf-arrow--right {
     --arrow-icon-transform: rotate(180deg);
-     -webkit-transform-origin: center;
-     transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
   }
+}
+
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 60px;
 }
 
 </style>

@@ -40,47 +40,37 @@ import { ref, onMounted } from '@vue/composition-api';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { useUser, userGetters } from '@vue-storefront/vendure';
 import { SfInput, SfButton } from '@storefront-ui/vue';
-
 export default {
   name: 'ProfileUpdateForm',
-
   components: {
     SfInput,
     SfButton,
     ValidationProvider,
     ValidationObserver
   },
-
   setup(_, { emit }) {
     const { user, load } = useUser();
-
     const resetForm = () => ({
       firstName: userGetters.getFirstName(user.value),
       lastName: userGetters.getLastName(user.value)
     });
-
     const form = ref(resetForm());
-
     const submitForm = (resetValidationFn) => {
       return () => {
         const onComplete = () => {
           form.value = resetForm();
           resetValidationFn();
         };
-
         const onError = () => {
           // TODO: Handle error
         };
-
         emit('submit', { form, onComplete, onError });
       };
     };
-
     onMounted(async () => {
       await load();
       form.value = resetForm();
     });
-
     return {
       form,
       submitForm
@@ -113,7 +103,6 @@ export default {
         flex: 1;
         margin-right: var(--spacer-2xl);
       }
-
       &:last-child {
         margin-right: 0;
       }

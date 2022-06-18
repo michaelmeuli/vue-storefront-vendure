@@ -105,7 +105,6 @@ import {
 import { computed, ref } from '@vue/composition-api';
 import { useUserOrder, orderGetters } from '@vue-storefront/vendure';
 import { AgnosticOrderStatus, onSSR } from '@vue-storefront/core';
-
 export default {
   name: 'PersonalDetails',
   components: {
@@ -120,26 +119,21 @@ export default {
     const limit = 10;
     const { orders, search } = useUserOrder();
     const currentOrder = ref(null);
-
     onSSR(async () => {
       await search({ limit, offset: 0, sort: 'createdAt desc' });
     });
-
     const goNext = (offset) => {
       search({ limit, offset: offset + limit, sort: 'createdAt desc' });
     };
-
     const goPrev = (offset) => {
       search({ limit, offset: offset - limit, sort: 'createdAt desc' });
     };
-
     const tableHeaders = [
       'Order ID',
       'Payment date',
       'Amount',
       'Status'
     ];
-
     const getStatusTextClass = (order) => {
       const status = orderGetters.getStatus(order);
       switch (status) {
@@ -151,7 +145,6 @@ export default {
           return '';
       }
     };
-
     return {
       tableHeaders,
       orders: computed(() => orders.value ?? []),
@@ -166,7 +159,6 @@ export default {
   }
 };
 </script>
-
 <style lang='scss' scoped>
 .pagination {
   padding-top: var(--spacer-base);
@@ -272,5 +264,4 @@ export default {
     --property-value-font-weight: var(--font-weight--semibold);
   }
 }
-
 </style>

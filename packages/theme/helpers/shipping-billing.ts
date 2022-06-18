@@ -19,7 +19,7 @@ enum AddressType {
   Shipping = 'shipping',
 }
 
-export const mapAddressFormToOrderAddress = (addressForm: AddressForm): OrderAddress => ({
+export const mapAddressFormToOrderAddress = (addressForm: AddressForm) => ({
   fullName: `${addressForm.firstName} ${addressForm.lastName}`,
   streetLine1: `${addressForm.streetName} ${addressForm.apartment || addressForm.streetNumber}`,
   city: addressForm.city,
@@ -29,7 +29,7 @@ export const mapAddressFormToOrderAddress = (addressForm: AddressForm): OrderAdd
   province: addressForm.state
 });
 
-export const mapOrderAddressToAddressForm = (orderAddress: OrderAddress): AddressForm => {
+export const mapOrderAddressToAddressForm = (orderAddress): AddressForm => {
   const names = orderAddress?.fullName?.split(' ');
   const address = orderAddress?.streetLine1?.split(' ');
   const country = COUNTRIES.find(country => country.label === orderAddress?.country);

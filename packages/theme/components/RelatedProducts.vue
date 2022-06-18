@@ -20,16 +20,13 @@
 </template>
 
 <script lang="ts">
-
 import {
   SfCarousel,
   SfProductCard,
   SfSection,
   SfLoader
 } from '@storefront-ui/vue';
-
 import { getCalculatedPrice } from '~/helpers';
-
 export default {
   name: 'RelatedProducts',
   setup() {
@@ -53,7 +50,6 @@ export default {
 .section {
   margin-top: var(--spacer-base);
 }
-
 .carousel {
     margin: 0 calc(-1 * var(--spacer-sm)) 0 0;
   @include for-desktop {
@@ -72,5 +68,4 @@ export default {
     }
   }
 }
-
 </style>

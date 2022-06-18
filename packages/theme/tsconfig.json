@@ -35,9 +35,6 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist",
-    "_theme"
+    "node_modules"
   ]
 }

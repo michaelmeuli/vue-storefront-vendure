@@ -171,6 +171,7 @@ export default {
   'Your Account': 'Your Account',
   'What can we improve': 'What can we improve',
   'Update email': 'Update email',
+  'Update email': 'Update email',
   'Menu': "Menu",
   'Wishlist': 'Wishlist',
   'Account': 'Account',

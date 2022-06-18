@@ -10,7 +10,6 @@
       <SfCheckbox
         v-e2e="'copy-address'"
         :selected="sameAsShipping"
-        @change="handleCheckSameAddress"
         :label="$t('Copy address data from shipping')"
         name="copyShippingAddress"
         class="form__element"
@@ -69,7 +68,7 @@
         </ValidationProvider>
         <ValidationProvider
           name="apartment"
-          rules="required|min:2"
+          rules="required"
           v-slot="{ errors }"
           slim
         >
@@ -244,21 +243,24 @@ export default {
     const billingDetails = ref(billing.value || {});
     let oldBilling = null;
 
-    const sameAsShipping = ref(false);
+    const sameAsShipping = ref(true);
 
     const handleCheckSameAddress = async () => {
-      sameAsShipping.value = !sameAsShipping.value;
+      //sameAsShipping.value = !sameAsShipping.value;
       if (sameAsShipping.value) {
         if (!shippingDetails.value) {
           await loadShipping();
         }
         oldBilling = {...billingDetails.value};
+        console.log('shippingDetails.value: ', shippingDetails.value);
         billingDetails.value = {...mapOrderAddressToAddressForm(shippingDetails.value)};
         return;
       }
 
       billingDetails.value = mapOrderAddressToAddressForm(oldBilling);
     };
+
+    handleCheckSameAddress();
 
     const form = ref({
       firstName: '',
@@ -276,8 +278,10 @@ export default {
       const orderAddress = mapAddressFormToOrderAddress(billingDetails.value);
       await save({ billingDetails: orderAddress });
       context.root.$router.push('/checkout/payment');
-      sameAsShipping.value = false;
+      // sameAsShipping.value = false;
     };
+
+    handleFormSubmit();
 
     onSSR(async () => {
       await load();

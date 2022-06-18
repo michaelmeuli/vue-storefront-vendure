@@ -2,41 +2,40 @@ import { Customer } from '../types/customer';
 import { el } from './utils/element';
 
 class Shipping {
-
   get firstName(): Cypress.Chainable {
-    return el('shipping-firstName', 'input');
+    return el('firstName');
   }
 
   get lastName(): Cypress.Chainable {
-    return el('shipping-lastName');
+    return el('lastName');
   }
 
   get streetName(): Cypress.Chainable {
-    return el('shipping-streetName');
+    return el('streetName');
   }
 
   get apartment(): Cypress.Chainable {
-    return el('shipping-apartment');
+    return el('apartment');
   }
 
   get city(): Cypress.Chainable {
-    return el('shipping-city');
+    return el('city');
   }
 
   get state(): Cypress.Chainable {
-    return el('shipping-state', 'input');
+    return el('state', 'select');
   }
 
   get country(): Cypress.Chainable {
-    return el('shipping-country', 'select');
+    return el('country', 'select');
   }
 
   get zipcode(): Cypress.Chainable {
-    return el('shipping-zipcode');
+    return el('zipcode');
   }
 
   get phone(): Cypress.Chainable {
-    return el('shipping-phone');
+    return el('phone');
   }
 
   get continueToBillingButton(): Cypress.Chainable {
@@ -44,7 +43,7 @@ class Shipping {
   }
 
   get heading(): Cypress.Chainable {
-    return el('shipping-heading');
+    return el('heading-shipping');
   }
 
   get selectShippingButton(): Cypress.Chainable {
@@ -52,7 +51,7 @@ class Shipping {
   }
 
   get shippingMethods(): Cypress.Chainable {
-    return el('shipping-method', 'label');
+    return el('shipping-method-label');
   }
 
   public fillForm(customer: Customer) {
@@ -62,69 +61,24 @@ class Shipping {
     this.apartment.type(customer.address.shipping.apartment);
     this.city.type(customer.address.shipping.city);
     this.country.select(customer.address.shipping.country);
-    this.state.type(customer.address.shipping.state);
+    this.state.select(customer.address.shipping.state);
     this.zipcode.type(customer.address.shipping.zipcode);
     this.phone.type(customer.address.shipping.phone);
   }
 }
 
 class Billing {
-  get firstName(): Cypress.Chainable {
-    return el('billing-firstName');
-  }
-
-  get lastName(): Cypress.Chainable {
-    return el('billing-lastName');
-  }
-
-  get streetName(): Cypress.Chainable {
-    return el('billing-streetName');
-  }
-
-  get apartment(): Cypress.Chainable {
-    return el('billing-apartment');
-  }
-
-  get city(): Cypress.Chainable {
-    return el('billing-city');
-  }
-
-  get state(): Cypress.Chainable {
-    return el('billing-state', 'input');
-  }
-
-  get country(): Cypress.Chainable {
-    return el('billing-country', 'select');
-  }
-
-  get zipcode(): Cypress.Chainable {
-    return el('billing-zipcode');
-  }
-
-  get phone(): Cypress.Chainable {
-    return el('billing-phone');
-  }
-
   get continueToPaymentButton(): Cypress.Chainable {
     return el('continue-to-payment');
   }
 
   get heading(): Cypress.Chainable {
-    return el('billing-heading');
+    return el('heading-billing');
   }
 
-  public fillForm(customer: Customer) {
-    this.firstName.type(customer.firstName);
-    this.lastName.type(customer.lastName);
-    this.streetName.type(customer.address.billing.streetName);
-    this.apartment.type(customer.address.billing.apartment);
-    this.city.type(customer.address.billing.city);
-    this.country.select(customer.address.billing.country);
-    this.state.type(customer.address.billing.state);
-    this.zipcode.type(customer.address.billing.zipcode);
-    this.phone.type(customer.address.billing.phone);
+  get copyAddressLabel(): Cypress.Chainable {
+    return el('copy-address', 'label');
   }
-
 }
 
 class Payment {
@@ -151,5 +105,5 @@ export {
   Shipping,
   Billing,
   Payment,
-  ThankYou
+  ThankYou,
 };

@@ -26,8 +26,7 @@
             </template>
             <template #description="{ description }">
               <div class="sf-radio__description payment__description">
-                <div class="payment__info" v-html='description'>
-                </div>
+              <div class="payment__info" v-html='description'></div>
               </div>
             </template>
           </SfRadio>
@@ -56,8 +55,8 @@ export default {
   setup (_, { emit }) {
     const { status } = usePaymentProviderMock();
     const selectedPaymentMethod = ref({});
-    const paymentMethods = ref([]);
     const { methods, load } = usePayment();
+    const paymentMethods = ref([]);
 
     const selectPaymentMethod = async (paymentMethod) => {
       selectedPaymentMethod.value = paymentMethod;

@@ -65,14 +65,6 @@
 
         <VsfPaymentProvider @paymentMethodSelected="updatePaymentMethod"/>
 
-        <SfCheckbox v-e2e="'terms'" v-model="terms" name="terms" class="summary__terms">
-          <template #label>
-            <div class="sf-checkbox__label">
-              {{ $t('I agree to') }} <SfLink href="#"> {{ $t('Terms and conditions') }}</SfLink>
-            </div>
-          </template>
-        </SfCheckbox>
-
         <div class="summary__action">
           <SfButton
             type="button"
@@ -131,10 +123,10 @@ export default {
   },
   setup(props, context) {
     const { cart, load, setCart } = useCart();
-    const { loading } = useMakeOrder();
     const { set } = usePayment();
+    const { loading } = useMakeOrder();
 
-    const terms = ref(false);
+    const terms = ref(true);
     const paymentMethod = ref(null);
 
     onSSR(async () => {
@@ -145,6 +137,9 @@ export default {
       paymentMethod.value = method;
     };
 
+    const totalsref = computed(() => cartGetters.getTotals(cart.value));
+    const totals = totalsref.value
+
     const processOrder = async () => {
       const response = await set({
         method: paymentMethod?.value?.code,
@@ -153,7 +148,7 @@ export default {
         }
       });
 
-      const thankYouPath = { name: 'thank-you', query: { order: response?.code }};
+      const thankYouPath = { name: 'thank-you', query: { order: response?.code, payway: paymentMethod?.value?.code, total: totals.total }};
       context.root.$router.push(context.root.localePath(thankYouPath));
       setCart(null);
     };

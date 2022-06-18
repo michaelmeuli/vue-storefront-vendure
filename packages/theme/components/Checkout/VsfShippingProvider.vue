@@ -35,8 +35,7 @@
             </template>
             <template #description="{ description }">
               <div class="sf-radio__description shipping__description">
-                <div class="shipping__info" v-html='description'>
-                </div>
+                <div class="shipping__info" v-html='description'></div>
               </div>
             </template>
           </SfRadio>

@@ -57,31 +57,6 @@
           <span class="navbar__label smartphone-only">{{ pagination.totalItems }} {{ $t('Items') }}</span>
         </div>
 
-        <div class="navbar__view">
-          <span class="navbar__view-label desktop-only">{{ $t('View') }}</span>
-          <SfIcon
-            v-e2e="'tiles-icon'"
-            class="navbar__view-icon"
-            :color="isCategoryGridView ? 'black' : 'dark-secondary'"
-            icon="tiles"
-            size="12px"
-            role="button"
-            :aria-label="$t('Change to grid view')"
-            :aria-pressed="isCategoryGridView"
-            @click="changeToCategoryGridView"
-          />
-          <SfIcon
-            v-e2e="'list-icon'"
-            class="navbar__view-icon"
-            :color="!isCategoryGridView ? 'black' : 'dark-secondary'"
-            icon="list"
-            size="12px"
-            role="button"
-            :aria-label="$t('Change to list view')"
-            :aria-pressed="!isCategoryGridView"
-            @click="changeToCategoryListView"
-          />
-        </div>
       </div>
     </div>
 
@@ -109,7 +84,7 @@
                       >
                         <template #label>
                           <nuxt-link
-                            :to="localePath(th.getCatLink(cat))"
+                            :to="localePath(th.getCatLink(cat))+'?sort=NAME_ASC'"
                             :class="cat.isCurrent ? 'sidebar--cat-selected' : ''"
                           >
                             All
@@ -128,7 +103,7 @@
                       >
                         <template #label="{ label }">
                           <nuxt-link
-                            :to="localePath(th.getCatLink(subCat))"
+                            :to="localePath(th.getCatLink(subCat))+'?sort=NAME_ASC'"
                             :class="subCat.isCurrent ? 'sidebar--cat-selected' : ''"
                           >
                             {{ label }}
@@ -196,7 +171,7 @@
               class="products__product-card-horizontal"
               @input="productQuantity[product._id] = $event"
               @click:wishlist="!isInWishlist({ product }) ? addItemToWishlist({ product }) : removeItemFromWishlist({ product })"
-              @click:add-to-cart="addItemToCart({ product, quantity:  Number(productQuantity[product._id]) || itemQuantity })"
+              @click:add-to-cart="addItemToCart({ product, quantity: Number(productQuantity[product._id]) || itemQuantity })"
               :link="localePath(`/p/${productGetters.getId(product)}/${productGetters.getSlug(product)}`)"
             >
               <template #configuration>

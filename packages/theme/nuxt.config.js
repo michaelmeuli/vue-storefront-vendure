@@ -4,22 +4,31 @@ import theme from './themeConfig';
 
 export default {
   server: {
-    port: process.env.APP_PORT || 3001,
-    host: '0.0.0.0'
+    port: 3001,
+    host: 'localhost'
   },
   head: {
-    title: 'Vue Storefront',
+    title: 'Ätherische Öle von doTERRA',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Online Shop für ätherische Öle von doTERRA (Schweiz) in garantiert reiner therapeutischer Qualität.'
+      },
+      {
+        'http-equiv': 'Content-Security-Policy',
+        content: 'upgrade-insecure-requests'
+      },
+      { 
+        hid: 'keywords', 
+        name: 'keywords', 
+        content: 'doterra, ätherische öle, aetherische oele, therapeutisch, wellness, spa, massagen, diffuser, Aromatherapie, Atemwege, zur Beruhigung, zur Hautpflege' 
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ]
   },
   loading: { color: '#fff' },
@@ -33,9 +42,6 @@ export default {
     [
       '@vue-storefront/nuxt',
       {
-        // @core-development-only-start
-        coreDevelopment: true,
-        // @core-development-only-end
         useRawSource: {
           dev: ['@vue-storefront/vendure', '@vue-storefront/core'],
           prod: ['@vue-storefront/vendure', '@vue-storefront/core']
@@ -46,12 +52,6 @@ export default {
     [
       '@vue-storefront/nuxt-theme',
       {
-        generate: {
-          replace: {
-            apiClient: '@vue-storefront/vendure-api',
-            composables: '@vue-storefront/vendure'
-          }
-        },
         routes: false
       }
     ],
@@ -88,13 +88,13 @@ export default {
       { code: 'en', label: 'English', file: 'en.js', iso: 'en' },
       { code: 'de', label: 'German', file: 'de.js', iso: 'de' }
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'de',
     lazy: true,
     seo: true,
     langDir: 'lang/',
     strategy: 'no_prefix',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: 'de',
       numberFormats: {
         en: {
           currency: {
@@ -106,8 +106,8 @@ export default {
         de: {
           currency: {
             style: 'currency',
-            currency: 'EUR',
-            currencyDisplay: 'symbol'
+            currency: 'CHF',
+            currencyDisplay: 'code'
           }
         }
       }
@@ -122,10 +122,10 @@ export default {
   },
   router: {
     extendRoutes(routes) {
-      getRoutes(`${__dirname}/_theme`)
+      getRoutes(`${__dirname}`)
         .forEach((route) => routes.unshift(route));
     },
-    middleware: ['checkout']
+    middleware: ['checkout'],
   },
   publicRuntimeConfig: {
     theme
@@ -147,11 +147,10 @@ export default {
           lastCommit: process.env.LAST_COMMIT || ''
         })
       })
-    ]
+    ],
   },
   pwa: {
     meta: {
-      // eslint-disable-next-line camelcase
       theme_color: '#5ECE7B'
     }
   },

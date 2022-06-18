@@ -2,11 +2,8 @@
 const defaultConfig = {
   home: {
     bannerA: {
-      link: '/',
-      image: {
-        mobile: '/homepage/bannerB.webp',
-        desktop: '/homepage/bannerF.webp'
-      }
+      link: '/c/atherische-ole',
+      image: '/homepage/bannerA.jpg'
     },
     bannerB: {
       link: '/',

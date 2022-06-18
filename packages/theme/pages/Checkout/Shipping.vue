@@ -61,7 +61,7 @@
         </ValidationProvider>
         <ValidationProvider
           name="apartment"
-          rules="required|min:2"
+          rules="required"
           v-slot="{ errors }"
           slim
         >
@@ -192,7 +192,7 @@
           @click="$router.push(localePath({ name: 'billing' }))"
           :disabled="!shouldDisplayButton || loadingShippingProvider"
         >
-          {{ $t('Continue to billing') }}
+          {{ $t('Continue to payment') }}
         </SfButton>
         </div>
     </form>

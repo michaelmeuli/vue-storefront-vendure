@@ -13,7 +13,7 @@
           :errorMessage="errors[0]"
         />
       </ValidationProvider>
-      <ValidationProvider rules="required|password" v-slot="{ errors }" vid="password" class="form__element">
+     <ValidationProvider rules="required|password" v-slot="{ errors }" vid="password" class="form__element">
         <SfInput
           v-e2e="'myaccount-password'"
           v-model="form.password"
@@ -25,7 +25,6 @@
           :errorMessage="errors[0]"
         />
       </ValidationProvider>
-
       <SfButton
         v-e2e="'myaccount-update-personal-data-btn'"
         class="form__button"
@@ -41,7 +40,6 @@ import { ref } from '@vue/composition-api';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { useUser, userGetters } from '@vue-storefront/vendure';
 import { SfInput, SfButton } from '@storefront-ui/vue';
-
 export default {
   name: 'ProfileUpdateForm',
   components: {
@@ -52,14 +50,11 @@ export default {
   },
   setup(_, { emit }) {
     const { user, load } = useUser();
-
     const resetForm = () => ({
       email: userGetters.getEmailAddress(user.value),
       password: ''
     });
-
     const form = ref(resetForm());
-
     const submitForm = (resetValidationFn) => {
       return () => {
         const onComplete = async () => {
@@ -67,14 +62,12 @@ export default {
           form.value = resetForm();
           resetValidationFn();
         };
-
         const onError = () => {
           // TODO: Handle error
         };
         emit('submit', { form, onComplete, onError });
       };
     };
-
     return {
       form,
       submitForm
@@ -107,7 +100,6 @@ export default {
         flex: 1;
         margin-right: var(--spacer-2xl);
       }
-
       &:last-child {
         margin-right: 0;
       }

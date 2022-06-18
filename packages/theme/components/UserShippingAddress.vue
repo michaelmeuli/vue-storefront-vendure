@@ -16,7 +16,6 @@
 
 <script>
 import { userShippingGetters } from '@vue-storefront/vendure';
-
 export default {
   props: {
     address: {
@@ -24,7 +23,6 @@ export default {
       required: true
     }
   },
-
   setup() {
     return {
       userShippingGetters

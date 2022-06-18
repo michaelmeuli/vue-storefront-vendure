@@ -9,11 +9,11 @@
   "screenshotOnRunFailure": true,
   "screenshotsFolder": "tests/e2e/report/assets/screenshots",
   "video": false,
-  "reporter": "../../../node_modules/mochawesome",
+  "reporter": "../../../../node_modules/mochawesome",
   "reporterOptions": {
-    "reportDir": "tests/e2e/report",
-    "reportFilename": "report",
-    "overwrite": false,
-    "html": false
+      "reportDir": "tests/e2e/report",
+      "reportFilename": "report",
+      "overwrite": false,
+      "html": false
   }
 }

@@ -34,7 +34,6 @@ import {
   SfBottomModal,
   SfCharacteristic
 } from '@storefront-ui/vue';
-
 import { ref, computed} from '@vue/composition-api';
 export default {
   components: {
@@ -55,7 +54,6 @@ export default {
       window.location.reload();
       isLangModalOpen.value = !isLangModalOpen;
     };
-
     return {
       availableLocales,
       locale,
