@@ -5,6 +5,7 @@ import { FetchResult } from 'apollo-link';
 import { Address, CreateAddressInput, CurrentUser, DeleteCustomerAddress, UpdateCustomerEmailAddressParams, UpdateCustomerInput } from '.';
 import { ActiveOrderResult, ApplyCouponCodeResult, CollectionList, CreateCustomerInput, Customer, NativeAuthenticationResult, Order, PaymentInput, PaymentMethodQuote, Product, RegisterCustomerAccountResult, RegisterCustomerInput, RemoveOrderItemsResult, SearchResponse, SetCustomerForOrderResult, ShippingMethodQuote, Success, UpdateAddressInput, UpdateOrderItemsResult, RequestPasswordResetResult, ResetPasswordResult } from './GraphQL';
 import { AddToCartParams, CartCouponParams, CollectionParams, LoginParams, ProductParams, RemoveFromCartParams, SearchParams, SetShippingMethodParams, TransitionOrderToStateParams, UpdateAddressDetailsParams, UpdateCartParams, UpdateCustomerPasswordParams, RequestPasswordResetParams, ResetPasswordParams } from './types';
+import { Context } from './context';
 
 export type QueryResponse<K extends string, V> = ApolloQueryResult<Record<K, V>>;
 export type MutationResponse<K extends string, V> = FetchResult<Record<K, V>>;
@@ -71,4 +72,5 @@ export interface VendureApiMethods {
   resetPassword(params: ResetPasswordParams, customQuery?: CustomQuery): Promise<ResetPasswordResponse>;
   updateCustomerEmailAddress(params: UpdateCustomerEmailAddressParams, customQuery?: CustomQuery): Promise<UpdateCustomerEmailAddressResponse>;
   getRelatedProducts(params: SearchParams, customQuery?: CustomQuery): Promise<GetFacetResponse>;
+  setStripePayment(context: Context, customQuery?: CustomQuery): Promise<any>;
 }
