@@ -5,6 +5,7 @@ export const useStripe = () => {
     const context = useVSFContext();
     const secret= sharedRef({}, 'useStripe'); 
     const set = async () => { 
+        console.log('going to call setStripePayment');
         secret.value = await context.$vendure.api.setStripePayment(); 
          };
 
