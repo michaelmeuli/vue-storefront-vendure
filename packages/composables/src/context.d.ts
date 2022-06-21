@@ -3,7 +3,7 @@ import {
   ClientInstance,
   Config,
   VendureApiMethods
-} from '@mmeuli/vendure-api';
+} from '@vue-storefront/vendure-api';
 
 declare module '@vue-storefront/core' {
   export interface Context {

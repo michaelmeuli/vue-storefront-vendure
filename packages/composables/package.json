@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@vue-storefront/vendure-api": "1.2.0",
-    "@mmeuli/vendure-api": "1.2.1",
     "@vue-storefront/core": "~2.4.6"
   },
   "peerDependencies": {
