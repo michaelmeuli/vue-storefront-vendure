@@ -28,3 +28,4 @@ export { default as updateCustomerEmailAddress } from './updateCustomerEmailAddr
 export { default as getRelatedProducts } from './getRelatedProducts';
 export { default as requestPasswordReset } from './requestPasswordReset';
 export { default as resetPassword } from './resetPassword';
+export { default as setStripePayment } from './setStripePayment';

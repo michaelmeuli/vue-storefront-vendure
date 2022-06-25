@@ -7,7 +7,9 @@
     />
     <SfTable class="sf-table--bordered table desktop-only">
       <SfTableHeading class="table__row">
-        <SfTableHeader class="table__header table__image">{{ $t('Item') }}</SfTableHeader>
+        <SfTableHeader class="table__header table__image">{{
+          $t('Item')
+        }}</SfTableHeader>
         <SfTableHeader
           v-for="tableHeader in tableHeaders"
           :key="tableHeader"
@@ -23,10 +25,15 @@
         class="table__row"
       >
         <SfTableData class="table__image">
-          <SfImage :src="cartGetters.getItemImage(product)" :alt="cartGetters.getItemName(product)" />
+          <SfImage
+            :src="cartGetters.getItemImage(product)"
+            :alt="cartGetters.getItemName(product)"
+          />
         </SfTableData>
         <SfTableData class="table__data table__description table__data">
-          <div class="product-title">{{ cartGetters.getItemName(product) }}</div>
+          <div class="product-title">
+            {{ cartGetters.getItemName(product) }}
+          </div>
           <div class="product-sku">{{ cartGetters.getItemSku(product) }}</div>
           <SfProperty
             v-for="(attribute, key) in cartGetters.getItemOptions(product)"
@@ -35,11 +42,16 @@
             :value="attribute.value"
           />
         </SfTableData>
-        <SfTableData class="table__data">{{ cartGetters.getItemQty(product) }}</SfTableData>
+        <SfTableData class="table__data">{{
+          cartGetters.getItemQty(product)
+        }}</SfTableData>
         <SfTableData class="table__data price">
           <SfPrice
             :regular="$n(cartGetters.getItemPrice(product).regular, 'currency')"
-            :special="cartGetters.getItemPrice(product).special && $n(cartGetters.getItemPrice(product).special, 'currency')"
+            :special="
+              cartGetters.getItemPrice(product).special &&
+              $n(cartGetters.getItemPrice(product).special, 'currency')
+            "
             class="product-price"
           />
         </SfTableData>
@@ -50,7 +62,12 @@
         <div class="summary__total">
           <SfProperty
             :name="$t('Subtotal')"
-            :value="$n(totals.special > 0 ? totals.special : totals.subtotal, 'currency')"
+            :value="
+              $n(
+                totals.special > 0 ? totals.special : totals.subtotal,
+                'currency'
+              )
+            "
             class="sf-property--full-width property"
           />
         </div>
@@ -63,7 +80,7 @@
           class="sf-property--full-width sf-property--large summary__property-total"
         />
 
-        <VsfPaymentProvider @paymentMethodSelected="updatePaymentMethod"/>
+        <VsfPaymentProvider @paymentMethodSelected="updatePaymentMethod" />
 
         <div class="summary__action">
           <SfButton
@@ -99,11 +116,16 @@ import {
   SfPrice,
   SfProperty,
   SfAccordion,
-  SfLink
+  SfLink,
 } from '@storefront-ui/vue';
 import { onSSR } from '@vue-storefront/core';
-import { ref, computed } from '@vue/composition-api';
-import { useMakeOrder, useCart, cartGetters, usePayment } from '@vue-storefront/vendure';
+import { ref, computed, onMounted } from '@vue/composition-api';
+import {
+  useMakeOrder,
+  useCart,
+  cartGetters,
+  usePayment,
+} from '@vue-storefront/vendure';
 import { useStripe } from '@/composables/useStripe';
 
 export default {
@@ -120,7 +142,8 @@ export default {
     SfProperty,
     SfAccordion,
     SfLink,
-    VsfPaymentProvider: () => import('~/components/Checkout/VsfPaymentProvider')
+    VsfPaymentProvider: () =>
+      import('~/components/Checkout/VsfPaymentProvider'),
   },
   setup(props, context) {
     const { cart, load, setCart } = useCart();
@@ -134,78 +157,82 @@ export default {
       await load();
     });
 
-    const updatePaymentMethod = method => {
+    const updatePaymentMethod = (method) => {
       paymentMethod.value = method;
     };
 
     const totalsref = computed(() => cartGetters.getTotals(cart.value));
-    const totals = totalsref.value
+    const totals = totalsref.value;
+
+    const stripeLoading = ref(false);
+    const { set: setStripe, secret } = useStripe();
+    const stripeInit = () => {
+      const paymentElement = elem.value.create('payment');
+      paymentElement.mount('#payment-element');
+      stripeInterfaceLoaded.value = true;
+    };
+
+    //this code uses the Stripe elements form, for more info and options refer to:https://stripe.com/docs/payments/elements
+    const elem = computed(() => {
+      if (secret.value.createStripePaymentIntent) {
+        console.log(
+          'secret.value.createStripePaymentIntent: ',
+          secret.value.createStripePaymentIntent
+        );
+        return app.stripe.elements({
+          clientSecret: secret.value.createStripePaymentIntent,
+        });
+      }
+    });
+
+    onMounted(async () => {
+      await setStripe();
+      stripeInit(); //when using the nuxtjs stripe plugin (nuxt-stripe-plugin)
+    });
+
+    //
+
+    //Payment validation method example
+    const validation = async () => {
+      stripeLoading.value = true;
+      const { error } = await app.stripe.confirmPayment({
+        elements: elem.value,
+        confirmParams: {
+          return_url: `your return URL`,
+        },
+      });
+      showError(error);
+      stripeLoading.value = false;
+    };
+
+    //Error handling code example
+    const errorMessage = ref('');
+    const showError = (error) => {
+      if (error.type === 'card_error' || error.type === 'validation_error') {
+        errorMessage.value = error.message;
+      } else {
+        errorMessage.value = 'An unexpected error occured.';
+      }
+    };
 
     const processOrder = async () => {
       const response = await set({
         method: paymentMethod?.value?.code,
         metadata: {
           // Here you would pass data from an external Payment Provided after successful payment process like payment id.
-        }
+        },
       });
 
-      const thankYouPath = { name: 'thank-you', query: { order: response?.code, payway: paymentMethod?.value?.code, total: totals.total }};
+      const thankYouPath = {
+        name: 'thank-you',
+        query: {
+          order: response?.code,
+          payway: paymentMethod?.value?.code,
+          total: totals.total,
+        },
+      };
       context.root.$router.push(context.root.localePath(thankYouPath));
       setCart(null);
-
-
-
-    const stripeLoading = ref(false);
-    const { set: setStripe, secret } = useStripe();
-    const stripeInit = () => {
-        const paymentElement = elem.value.create("payment");
-        paymentElement.mount("#payment-element");
-        stripeInterfaceLoaded.value = true;
-        };
-
-    //this code uses the Stripe elements form, for more info and options refer to:https://stripe.com/docs/payments/elements
-    const elem = computed(() => {
-    if (secret.value.createStripePaymentIntent) {
-      console.log('secret.value.createStripePaymentIntent: ', secret.value.createStripePaymentIntent);
-        return app.stripe.elements({
-            clientSecret: secret.value.createStripePaymentIntent,
-            });
-        }
-    });
-
-    onMounted(async () => {
-        await setStripe();
-        stripeInit(); //when using the nuxtjs stripe plugin (nuxt-stripe-plugin)
-        });
-
-    //
-
-    //Payment validation method example
-    const validation = async () => {
-        stripeLoading.value = true;
-        const { error } = await app.stripe.confirmPayment({
-            elements: elem.value,
-            confirmParams: {
-                return_url: `your return URL`,
-                },
-            });
-        showError(error);
-        stripeLoading.value = false;
-        };
-
-    //Error handling code example
-    const errorMessage = ref("");
-    const showError = (error) => {
-        if (error.type === "card_error" || error.type === "validation_error") {
-            errorMessage.value = error.message;
-            }
-        else {
-            errorMessage.value = "An unexpected error occured.";
-            }
-
- };
-
-
     };
 
     return {
@@ -217,9 +244,9 @@ export default {
       cartGetters,
       processOrder,
       updatePaymentMethod,
-      paymentMethod
+      paymentMethod,
     };
-  }
+  },
 };
 </script>
 
@@ -301,9 +328,9 @@ export default {
       margin: 0 var(--spacer-xl) 0 0;
       width: auto;
     }
-    color:  var(--c-white);
+    color: var(--c-white);
     &:hover {
-      color:  var(--c-white);
+      color: var(--c-white);
     }
   }
   &__property-total {
