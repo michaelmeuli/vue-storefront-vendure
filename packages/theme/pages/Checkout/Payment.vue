@@ -179,7 +179,7 @@ export default {
           'secret.value.createStripePaymentIntent: ',
           secret.value.createStripePaymentIntent
         );
-        return app.stripe.elements({
+        return this.$stripe.elements({
           clientSecret: secret.value.createStripePaymentIntent,
         });
       }
