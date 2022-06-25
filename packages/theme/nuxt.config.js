@@ -71,7 +71,7 @@ export default {
     'vue-scrollto/nuxt',
     '@vue-storefront/middleware/nuxt',
     ['nuxt-stripe-module', {
-      publishableKey: 'STRIPE_PUBLISHABLE_KEY',
+      publishableKey: 'pk_live_51KyG7TFsMwyNTMADmLlkDnyhyzzSuhPXhzqOvkzExyMnwLfD8amLGoX1PFUrMLSyd6gWRLy2i8D4sak5IaFhQpCs00s2D2ZICh'
     }],
   ],
   i18n: {
