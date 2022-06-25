@@ -149,6 +149,7 @@ export default {
     const { cart, load, setCart } = useCart();
     const { set } = usePayment();
     const { loading } = useMakeOrder();
+    const { app } = context;
 
     const terms = ref(true);
     const paymentMethod = ref(null);
@@ -179,7 +180,7 @@ export default {
           'secret.value.createStripePaymentIntent: ',
           secret.value.createStripePaymentIntent
         );
-        return this.$stripe.elements({
+        return app.stripe.elements({
           clientSecret: secret.value.createStripePaymentIntent,
         });
       }
