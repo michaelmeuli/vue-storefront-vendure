@@ -149,7 +149,6 @@ export default {
     const { cart, load, setCart } = useCart();
     const { set } = usePayment();
     const { loading } = useMakeOrder();
-    const { app } = context;
 
     const terms = ref(true);
     const paymentMethod = ref(null);
@@ -164,57 +163,6 @@ export default {
 
     const totalsref = computed(() => cartGetters.getTotals(cart.value));
     const totals = totalsref.value;
-
-    const stripeLoading = ref(false);
-    const { set: setStripe, secret } = useStripe();
-    const stripeInit = () => {
-      const paymentElement = elem.value.create('payment');
-      paymentElement.mount('#payment-element');
-      stripeInterfaceLoaded.value = true;
-    };
-
-    //this code uses the Stripe elements form, for more info and options refer to:https://stripe.com/docs/payments/elements
-    const elem = computed(() => {
-      if (secret.value.createStripePaymentIntent) {
-        console.log(
-          'secret.value.createStripePaymentIntent: ',
-          secret.value.createStripePaymentIntent
-        );
-        return app.stripe.elements({
-          clientSecret: secret.value.createStripePaymentIntent,
-        });
-      }
-    });
-
-    onMounted(async () => {
-      await setStripe();
-      stripeInit(); //when using the nuxtjs stripe plugin (nuxt-stripe-plugin)
-    });
-
-    //
-
-    //Payment validation method example
-    const validation = async () => {
-      stripeLoading.value = true;
-      const { error } = await app.stripe.confirmPayment({
-        elements: elem.value,
-        confirmParams: {
-          return_url: `your return URL`,
-        },
-      });
-      showError(error);
-      stripeLoading.value = false;
-    };
-
-    //Error handling code example
-    const errorMessage = ref('');
-    const showError = (error) => {
-      if (error.type === 'card_error' || error.type === 'validation_error') {
-        errorMessage.value = error.message;
-      } else {
-        errorMessage.value = 'An unexpected error occured.';
-      }
-    };
 
     const processOrder = async () => {
       const response = await set({
@@ -235,6 +183,15 @@ export default {
       context.root.$router.push(context.root.localePath(thankYouPath));
       setCart(null);
     };
+
+    const stripeLoading = ref(false);
+    const { set: setStripe, secret } = useStripe();
+
+    onMounted(async () => {
+      await setStripe();
+    });
+
+    console.log('secret.value.createStripePaymentIntent: ', secret.value.createStripePaymentIntent);
 
     return {
       terms,
