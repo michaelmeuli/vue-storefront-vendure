@@ -189,9 +189,8 @@ export default {
 
     onMounted(async () => {
       await setStripe();
+      console.log('secret.value.createStripePaymentIntent: ', secret.value.createStripePaymentIntent);
     });
-
-    console.log('secret.value.createStripePaymentIntent: ', secret.value.createStripePaymentIntent);
 
     return {
       terms,
