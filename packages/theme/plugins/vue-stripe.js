@@ -8,5 +8,5 @@ import {
 export default () => {
   Vue.component('StripeCheckout', StripeCheckout);
   Vue.component('StripeElementCard', StripeElementCard);
-  Vue.use(StripePlugin, { pk: process.env.STRIPE_PK });
+  Vue.use(StripePlugin, { pk: process.env.STRIPE_PUBLISHABLE_KEY });
 };

@@ -63,12 +63,12 @@
 
     <div>
       <stripe-element-card
-        ref="elementRef"
+        ref="checkoutRef"
         :pk="publishableKey"
         @token="tokenCreated"
       />
       <button @click="submit">Generate token</button>
-    </div
+    </div>
 
 
 
@@ -200,7 +200,6 @@ export default {
       setCart(null);
     };
 
-    const stripeLoading = ref(false);
     const { set: setStripe, secret } = useStripe();
 
     onMounted(async () => {
@@ -210,33 +209,21 @@ export default {
 
 
 
-    const loading = ref(false);
+    const stripeLoading = ref(false);
     const token = ref(null);
     const checkoutRef = ref(null);
+    const publishableKey = ref(process.env.STRIPE_PUBLISHABLE_KEY);
 
-    const checkout () = {
+    const submit = () => {
       loading.value = true;
-      checkoutRef.redirectToCheckout();
+      checkoutRef.submit();
     };
-    const tokenCreated (token) {
+    const tokenCreated = (token) => {
       token.value = token;
       console.log('token.value: ', token.value);
       // handle the token
       // send it to your server
     };
-
-
-
-    submit () {
-      // this will trigger the process
-      this.$refs.elementRef.submit();
-    },
-    tokenCreated (token) {
-      console.log(token);
-      // handle the token
-      // send it to your server
-    },
-
 
 
     return {
@@ -249,9 +236,12 @@ export default {
       processOrder,
       updatePaymentMethod,
       paymentMethod,
-      loading,
+      stripeLoading,
       token,
-      checkoutRef
+      checkoutRef,
+      submit,
+      tokenCreated,
+      publishableKey
     };
   },
 };

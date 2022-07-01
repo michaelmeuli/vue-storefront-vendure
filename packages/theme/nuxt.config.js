@@ -29,10 +29,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    ]
+    ],
+    script: [
+      { src: 'https://js.stripe.com/v3' },
+    ],
   },
   env: {
-    STRIPE_PK: process.env.STRIPE_PUBLISHABLE_KEY
+    STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY
   },
   loading: { color: '#fff' },
   plugins: [{ src: '~/plugins/vue-stripe.js', ssr: false }],
