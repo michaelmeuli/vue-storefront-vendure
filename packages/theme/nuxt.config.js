@@ -69,10 +69,7 @@ export default {
     }],
     'cookie-universal-nuxt',
     'vue-scrollto/nuxt',
-    '@vue-storefront/middleware/nuxt',
-    ['nuxt-stripe-module', {
-      publishableKey: 'pk_live_51KyG7TFsMwyNTMADmLlkDnyhyzzSuhPXhzqOvkzExyMnwLfD8amLGoX1PFUrMLSyd6gWRLy2i8D4sak5IaFhQpCs00s2D2ZICh'
-    }],
+    '@vue-storefront/middleware/nuxt'       
   ],
   i18n: {
     currency: 'USD',

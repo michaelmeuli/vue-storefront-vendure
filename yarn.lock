@@ -3522,11 +3522,6 @@
     vue "^2.6.12"
     vue2-leaflet "^2.5.2"
 
-"@stripe/stripe-js@^1.11.0":
-  version "1.32.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.32.0.tgz#4ecdd298db61ad9b240622eafed58da974bd210e"
-  integrity sha512-7EvBnbBfS1aynfLRmBFcuumHNGjKxnNkO47rorFBktqDYHwo7Yw6pfDW2iqq0R8r7i7XiJEdWPvvEgQAiDrx3A==
-
 "@swc/helpers@^0.3.13":
   version "0.3.17"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.3.17.tgz#7c1b91f43c77e2bba99492162a498d465ef253d5"
@@ -13541,13 +13536,6 @@ nuxt-purgecss@^1.0.0:
     glob-all "^3.1.0"
     purgecss "^2.0.5"
     purgecss-webpack-plugin "^2.0.5"
-
-nuxt-stripe-module@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/nuxt-stripe-module/-/nuxt-stripe-module-3.2.0.tgz#440d820285fedebb9e89de041825c806cd418c4a"
-  integrity sha512-Ra9Ve0BfUP6OvJ3o/GUfzwMgSPzhYWp7WPK2WE+T4rgXOx1rbjDx8DH3WRMJNPIRNXziLcdez3EeDPQ7LffQDw==
-  dependencies:
-    "@stripe/stripe-js" "^1.11.0"
 
 nuxt@^2.15.8:
   version "2.15.8"
