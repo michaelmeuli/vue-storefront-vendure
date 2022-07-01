@@ -31,8 +31,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ]
   },
+  env: {
+    STRIPE_PK: process.env.STRIPE_PUBLISHABLE_KEY
+  },
   loading: { color: '#fff' },
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-stripe.js', ssr: false }],
   buildModules: [
     // to core
     '@nuxt/typescript-build',

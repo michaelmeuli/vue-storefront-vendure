@@ -3522,6 +3522,11 @@
     vue "^2.6.12"
     vue2-leaflet "^2.5.2"
 
+"@stripe/stripe-js@^1.13.2":
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.32.0.tgz#4ecdd298db61ad9b240622eafed58da974bd210e"
+  integrity sha512-7EvBnbBfS1aynfLRmBFcuumHNGjKxnNkO47rorFBktqDYHwo7Yw6pfDW2iqq0R8r7i7XiJEdWPvvEgQAiDrx3A==
+
 "@swc/helpers@^0.3.13":
   version "0.3.17"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.3.17.tgz#7c1b91f43c77e2bba99492162a498d465ef253d5"
@@ -4288,6 +4293,14 @@
     graphql "^15.5.1"
     graphql-tag "^2.12.5"
     isomorphic-fetch "^3.0.0"
+
+"@vue-stripe/vue-stripe@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@vue-stripe/vue-stripe/-/vue-stripe-4.4.2.tgz#5120b5dbdad2d36f98177212ebfafed81f60a068"
+  integrity sha512-+XaquPv9kwbV75dCKTM72kYTujwDIZItRmteaFtDYE/JvmqpVfLhjdcYTi3ZCxVe+i4dx02h453dj9cKfo+jiw==
+  dependencies:
+    "@stripe/stripe-js" "^1.13.2"
+    vue-coerce-props "^1.0.0"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
@@ -18161,6 +18174,11 @@ vue-client-only@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
+
+vue-coerce-props@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-coerce-props/-/vue-coerce-props-1.0.0.tgz#af3d00aa419f0de79c2b020824c6c0387070d66e"
+  integrity sha512-4fdRMXO6FHzmE7H4soAph6QmPg3sL/RiGdd+axuxuU07f02LNMns0jMM88fmt1bvSbN+2Wyd8raho6p6nXUzag==
 
 vue-demi@latest:
   version "0.13.1"

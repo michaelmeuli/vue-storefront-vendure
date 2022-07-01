@@ -57,6 +57,22 @@
         </SfTableData>
       </SfTableRow>
     </SfTable>
+
+
+
+
+    <div>
+      <stripe-element-card
+        ref="elementRef"
+        :pk="publishableKey"
+        @token="tokenCreated"
+      />
+      <button @click="submit">Generate token</button>
+    </div
+
+
+
+
     <div class="summary">
       <div class="summary__group">
         <div class="summary__total">
@@ -192,6 +208,37 @@ export default {
       console.log('secret.value.createStripePaymentIntent: ', secret.value.createStripePaymentIntent);
     });
 
+
+
+    const loading = ref(false);
+    const token = ref(null);
+    const checkoutRef = ref(null);
+
+    const checkout () = {
+      loading.value = true;
+      checkoutRef.redirectToCheckout();
+    };
+    const tokenCreated (token) {
+      token.value = token;
+      console.log('token.value: ', token.value);
+      // handle the token
+      // send it to your server
+    };
+
+
+
+    submit () {
+      // this will trigger the process
+      this.$refs.elementRef.submit();
+    },
+    tokenCreated (token) {
+      console.log(token);
+      // handle the token
+      // send it to your server
+    },
+
+
+
     return {
       terms,
       loading,
@@ -202,6 +249,9 @@ export default {
       processOrder,
       updatePaymentMethod,
       paymentMethod,
+      loading,
+      token,
+      checkoutRef
     };
   },
 };
