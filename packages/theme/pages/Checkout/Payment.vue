@@ -208,7 +208,7 @@ export default {
     const elementsOptions = ref(null);
     const confirmParams = ref({return_url: 'http://localhost:3001/checkout/payment'})
 
-    onMounted(async () => {
+    const getElementsOptions = (async () => {
       await setStripe();
       console.log(
         'secret.value.createStripePaymentIntent: ',
@@ -221,6 +221,9 @@ export default {
       console.log('elementsOptions.value: ', elementsOptions.value);
     });
 
+    onMounted(() => {
+      getElementsOptions();
+    });
 
     const pay = () => {
       paymentRef.submit();
