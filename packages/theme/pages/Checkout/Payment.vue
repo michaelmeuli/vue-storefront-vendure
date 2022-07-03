@@ -256,10 +256,6 @@ export default {
 
   methods: {
     async getElementsOptions () {
-      console.log(
-        'secret.value.createStripePaymentIntent: ',
-        secret.value.createStripePaymentIntent
-      );
       this.elementsOptions.clientSecret = elementsOptions.clientSecret;
       console.log('this.elementsOptions.clientSecret: ', this.elementsOptions.clientSecret);
     },
