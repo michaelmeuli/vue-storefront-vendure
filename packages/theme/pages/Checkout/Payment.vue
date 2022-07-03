@@ -83,9 +83,15 @@
 
         <VsfPaymentProvider @paymentMethodSelected="updatePaymentMethod" />
 
+        <div>
+          <p>{{ elementsOptions }}</p>
+        </div>
 
         <div>
-          <p>{{ elementsOptions.clientSecret }}</p>
+          <p>{{ publishableKey }}</p>
+        </div>
+
+        <div>
           <stripe-element-payment
             ref="paymentRef"
             :pk="publishableKey"
@@ -159,7 +165,7 @@ export default {
     SfLink,
     VsfPaymentProvider: () =>
       import('~/components/Checkout/VsfPaymentProvider'),
-    StripeElementPayment
+    StripeElementPayment,
   },
   setup(props, context) {
     const { cart, load, setCart } = useCart();
@@ -201,12 +207,7 @@ export default {
     };
 
     const { set: setStripe, secret } = useStripe();
-    const stripeLoading = ref(false);
-    const token = ref(null);
-    const paymentRef = ref(null);
-    const publishableKey = ref(process.env.STRIPE_PUBLISHABLE_KEY);
-    const elementsOptions = ref(null);
-    const confirmParams = ref({return_url: 'http://localhost:3001/checkout/payment'})
+    const elementsOptions = ref({});
 
     const getElementsOptions = (async () => {
       await setStripe();
@@ -220,15 +221,9 @@ export default {
       };
       console.log('elementsOptions.value: ', elementsOptions.value);
     });
-
     onMounted(() => {
       getElementsOptions();
     });
-
-    const pay = () => {
-      paymentRef.submit();
-    };
-
 
     return {
       terms,
@@ -240,14 +235,38 @@ export default {
       processOrder,
       updatePaymentMethod,
       paymentMethod,
-      stripeLoading,
-      token,
-      paymentRef,
-      publishableKey,
-      elementsOptions,
-      confirmParams,
-      pay
+      elementsOptions
     };
+  },
+
+  data() {
+    return {
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+      elementsOptions: {
+        appearance: {}, // appearance options
+      },
+      confirmParams: {
+        return_url: 'http://localhost:3001/checkout/payment', // success url
+      },
+    };
+  },
+  mounted() {
+    this.getElementsOptions();
+  },
+
+  methods: {
+    async getElementsOptions () {
+      console.log(
+        'secret.value.createStripePaymentIntent: ',
+        secret.value.createStripePaymentIntent
+      );
+      this.elementsOptions.clientSecret = elementsOptions.clientSecret;
+      console.log('this.elementsOptions.clientSecret: ', this.elementsOptions.clientSecret);
+    },
+
+    pay() {
+      this.$refs.paymentRef.submit();
+    },
   },
 };
 </script>
