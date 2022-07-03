@@ -83,19 +83,6 @@
 
         <VsfPaymentProvider @paymentMethodSelected="updatePaymentMethod" />
 
-
-        <div>
-          <p>{{ elementsOptions.clientSecret }}</p>
-          <stripe-element-payment
-            ref="paymentRef"
-            :pk="publishableKey"
-            :elements-options="elementsOptions"
-            :confirm-params="confirmParams"
-          />
-          <button @click="pay">Pay Now</button>
-        </div>
-
-
         <div class="summary__action">
           <SfButton
             type="button"
@@ -111,6 +98,14 @@
             @click="processOrder"
           >
             {{ $t('Make an order') }}
+          </SfButton>
+          <SfButton
+            v-e2e="'make-an-order'"
+            :disabled="!paymentMethod || !terms"
+            class="summary__action-button"
+            @click="processStripeOrder"
+          >
+            Mit Stripe bestellen
           </SfButton>
         </div>
       </div>
@@ -141,7 +136,6 @@ import {
   usePayment,
 } from '@vue-storefront/vendure';
 import { useStripe } from '@/composables/useStripe';
-import { StripeElementPayment } from '@vue-stripe/vue-stripe';
 
 export default {
   name: 'ReviewOrder',
@@ -159,7 +153,6 @@ export default {
     SfLink,
     VsfPaymentProvider: () =>
       import('~/components/Checkout/VsfPaymentProvider'),
-    StripeElementPayment
   },
   setup(props, context) {
     const { cart, load, setCart } = useCart();
@@ -201,34 +194,24 @@ export default {
     };
 
     const { set: setStripe, secret } = useStripe();
-    const stripeLoading = ref(false);
-    const token = ref(null);
-    const paymentRef = ref(null);
-    const publishableKey = ref(process.env.STRIPE_PUBLISHABLE_KEY);
-    const elementsOptions = ref(null);
-    const confirmParams = ref({return_url: 'http://localhost:3001/checkout/payment'})
 
-    const getElementsOptions = (async () => {
+    const processStripeOrder = async () => {
       await setStripe();
       console.log(
         'secret.value.createStripePaymentIntent: ',
         secret.value.createStripePaymentIntent
       );
-      elementsOptions.value = {
-        appearance: {}, // appearance options
-        clientSecret: secret.value.createStripePaymentIntent
+      const stripePath = {
+        name: 'stripe',
+        query: {
+          publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+          stripePaymentIntent: secret.value.createStripePaymentIntent,
+          total: totals.total,
+        },
       };
-      console.log('elementsOptions.value: ', elementsOptions.value);
-    });
-
-    onMounted(() => {
-      getElementsOptions();
-    });
-
-    const pay = () => {
-      paymentRef.submit();
+      context.root.$router.push(context.root.localePath(stripePath));
+      setCart(null);
     };
-
 
     return {
       terms,
@@ -240,13 +223,7 @@ export default {
       processOrder,
       updatePaymentMethod,
       paymentMethod,
-      stripeLoading,
-      token,
-      paymentRef,
-      publishableKey,
-      elementsOptions,
-      confirmParams,
-      pay
+      processStripeOrder,
     };
   },
 };

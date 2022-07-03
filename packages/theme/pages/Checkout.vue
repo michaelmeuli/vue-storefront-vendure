@@ -39,7 +39,8 @@ const STEPS = {
   customer: 'Kunde',
   shipping: 'Adresse',
   billing: '',
-  payment: 'Zahlung'
+  payment: 'Zahlung',
+  stripe: 'Stripe'
 };
 
 export default {
