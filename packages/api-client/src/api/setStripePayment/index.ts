@@ -16,6 +16,7 @@ const setStripePayment = async (
     `,
     fetchPolicy: NO_CACHE_FETCH_POLICY,
   });
+  console.log('request.data: ', request.data);
   return request.data;
 };
 export default setStripePayment;
