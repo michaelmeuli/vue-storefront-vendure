@@ -28,19 +28,17 @@ export default {
     const confirmParams = {
       return_url: 'http://localhost:3001/checkout/thank-you',
     };
-    const paymentRef = ref(null);
-
-    const pay = () => {
-      paymentRef.submit();
-    };
 
     return {
       publishableKey,
       elementsOptions,
-      confirmParams,
-      paymentRef,
-      pay,
+      confirmParams
     };
+  },
+  methods: {
+    pay () {
+      this.$refs.paymentRef.submit();
+    },
   },
 };
 </script>
