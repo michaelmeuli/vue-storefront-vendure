@@ -8,6 +8,7 @@ const setStripePayment = async (
   customQuery?: CustomQuery
 ) => {
   console.log('setStripePayment called');
+  console.log('??????????????????');
   const request = await context.client.mutate({
     mutation: gql`
       mutation {
