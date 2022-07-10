@@ -1,56 +1,76 @@
 <template>
-  <div id="stripe">
-    <stripe-element-payment
-      ref="paymentRef"
-      :pk="publishableKey"
-      :elements-options="elementsOptions"
-      :confirm-params="confirmParams"
-    />
-    <SfButton
-      class="stripe-button button-size"
-      @click="pay"
+  <div id="thank-you">
+    <SfCallToAction
+      v-e2e="'thank-you-banner'"
+      class="banner"
+      :title="$t('Thank you for your order!')"
+      :image="{
+        mobile: '/thankyou/bannerMyl.png',
+        desktop: '/thankyou/bannerDyl.png',
+      }"
     >
-      Jetzt bezahlen
-    </SfButton>
+      <template #description>
+        <div class="banner__order-number">
+          <span>{{ $t('Order No.') }}</span>
+          <strong>Zahlung erfolgreich</strong>
+        </div>
+      </template>
+    </SfCallToAction>
+
+
+
+    <SfButton link="/" class="sf-button back-button color-secondary button-size">{{ $t('Back to homepage') }}</SfButton>
   </div>
 </template>
 
 <script>
-import { StripeElementPayment } from '@vue-stripe/vue-stripe';
-import { SfButton } from '@storefront-ui/vue';
+import { SfHeading, SfButton, SfCallToAction } from '@storefront-ui/vue';
+import { PDF, BlobStream } from 'swissqrbill';
+import { useShipping, userShippingGetters } from '@vue-storefront/vendure';
+import { ref, reactive, onMounted, computed } from '@vue/composition-api';
+import pdf from 'vue-pdf';
 
 export default {
   components: {
-    StripeElementPayment,
-    SfButton
+    SfHeading,
+    SfButton,
+    SfCallToAction,
+    pdf
   },
-  name: 'Stripe',
+  name: 'ThankYou',
   setup(props, context) {
-    const publishableKey = context.root.$route.query.publishableKey;
-    const elementsOptions = {
-      appearance: {}, // appearance options
-      clientSecret: context.root.$route.query.stripePaymentIntent,
+    const { shipping: shippingDetails, load: loadShipping } = useShipping();
+
+    const getShippingDetails = async () => {
+      if (!shippingDetails.value) {
+        await loadShipping();
+      }
     };
-    const confirmParams = {
-      return_url: 'http://localhost:3001/checkout/thank-you-stripe',
-    };
+    getShippingDetails();
+    console.log(shippingDetails.value);
+
+
+    const payment_intent = context.root.$route.query.payment_intent;
+    const payment_intent_client_secret = context.root.$route.query.payment_intent_client_secret;
+    const redirect_status = context.root.$route.query.redirect_status;
 
     return {
-      publishableKey,
-      elementsOptions,
-      confirmParams
+      address: {
+        name: 'Jessica Meuli',
+        street: 'Sonnenhaldenstrasse 5',
+        city: '8360 Wallenwil',
+        email: 'yoga.lichtquelle@gmail.com'
+      },
+      payment_intent,
+      payment_intent_client_secret,
+      redirect_status
     };
-  },
-  methods: {
-    pay () {
-      this.$refs.paymentRef.submit();
-    },
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-#stripe {
+#thank-you {
   box-sizing: border-box;
   @include for-desktop {
     max-width: 1240px;
@@ -209,7 +229,7 @@ export default {
     --button-width: 25rem;
   }
 }
-.stripe-button {
+.download_qr-bill-button {
   margin: 2rem auto 3.75rem;
 }
 .invoice {

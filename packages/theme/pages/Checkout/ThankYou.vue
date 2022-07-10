@@ -71,7 +71,6 @@ export default {
       }
     };
     getShippingDetails();
-    console.log(shippingDetails.value);
 
     const data = {
       currency: 'CHF',
