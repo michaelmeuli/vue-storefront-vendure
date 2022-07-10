@@ -37,7 +37,7 @@ export default {
     SfCallToAction,
     pdf
   },
-  name: 'ThankYou',
+  name: 'ThankYouStripe',
   setup(props, context) {
     const { shipping: shippingDetails, load: loadShipping } = useShipping();
 

@@ -19,5 +19,10 @@ export default async ({ app, $vsf }) => {
 
   } else if (currentPath === CheckoutSteps.ThankYou && !canEnterThankYou(app.context)) {
     app.context.redirect('/');
+
   }
+  // else if (currentPath === CheckoutSteps.StripeThankYou) {
+  //   console.log('checkout middleware');
+  //   app.context.redirect('/');
+  // }
 };

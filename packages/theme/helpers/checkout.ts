@@ -14,5 +14,6 @@ export enum CheckoutSteps {
   Shipping = 'shipping',
   Billing = 'billing',
   Payment = 'payment',
-  ThankYou = 'thank-you'
+  ThankYou = 'thank-you',
+  StripeThankYou = 'thank-you-stripe'
 }
