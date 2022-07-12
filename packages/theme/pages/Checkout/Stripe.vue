@@ -32,7 +32,7 @@ export default {
       clientSecret: context.root.$route.query.stripePaymentIntent,
     };
     const confirmParams = {
-      return_url: 'http://localhost:3001/checkout/thank-you-stripe',
+      return_url: 'http://localhost:3001/stripe-success',
     };
 
     return {

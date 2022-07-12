@@ -39,28 +39,11 @@ export default {
   },
   name: 'ThankYouStripe',
   setup(props, context) {
-    const { shipping: shippingDetails, load: loadShipping } = useShipping();
-
-    const getShippingDetails = async () => {
-      if (!shippingDetails.value) {
-        await loadShipping();
-      }
-    };
-    getShippingDetails();
-    console.log(shippingDetails.value);
-
-
     const payment_intent = context.root.$route.query.payment_intent;
     const payment_intent_client_secret = context.root.$route.query.payment_intent_client_secret;
     const redirect_status = context.root.$route.query.redirect_status;
 
     return {
-      address: {
-        name: 'Jessica Meuli',
-        street: 'Sonnenhaldenstrasse 5',
-        city: '8360 Wallenwil',
-        email: 'yoga.lichtquelle@gmail.com'
-      },
       payment_intent,
       payment_intent_client_secret,
       redirect_status
