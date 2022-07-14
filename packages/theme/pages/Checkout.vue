@@ -3,7 +3,7 @@
     <div class="checkout">
       <div class="checkout__main">
         <SfSteps
-          v-if="!isThankYou && !isStripe && !isThankYouStripe"
+          v-if="!isThankYou && !isStripe"
           :active="currentStepIndex"
           class="checkout__steps"
           @change="handleStepClick"
@@ -19,7 +19,7 @@
         <nuxt-child v-else />
       </div>
       <div
-        v-if="!isThankYou && !isStripe && !isThankYouStripe"
+        v-if="!isThankYou && !isStripe"
         class="checkout__aside desktop-only"
       >
         <transition name="fade">
@@ -54,7 +54,6 @@ export default {
     const currentStepIndex = computed(() => Object.keys(STEPS).findIndex(s => s === currentStep.value));
     const isThankYou = computed(() => currentStep.value === 'thank-you');
     const isStripe = computed(() => currentStep.value === 'stripe');
-    const isThankYouStripe = computed(() => currentStep.value === 'thank-you-stripe');
 
     const handleStepClick = (stepIndex) => {
       const key = Object.keys(STEPS)[stepIndex];
@@ -67,7 +66,6 @@ export default {
       currentStepIndex,
       isThankYou,
       isStripe,
-      isThankYouStripe,
       currentStep
     };
   }
