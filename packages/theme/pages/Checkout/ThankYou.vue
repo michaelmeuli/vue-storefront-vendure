@@ -49,7 +49,7 @@
 <script>
 import { SfHeading, SfButton, SfCallToAction } from '@storefront-ui/vue';
 import { PDF, BlobStream } from 'swissqrbill';
-import { useShipping, userShippingGetters } from '@vue-storefront/vendure';
+import { useShipping, userShippingGetters } from '@mmeuli/vendure';
 import { ref, reactive, onMounted, computed } from '@vue/composition-api';
 import pdf from 'vue-pdf';
 

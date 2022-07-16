@@ -4,7 +4,7 @@ import {
   UseMakeOrderFactoryParams
 } from '@vue-storefront/core';
 // TODO: replace any with Order when working on order functionality
-// import type { Order } from '@vue-storefront/vendure-api';
+// import type { Order } from '@mmeuli/vendure-api';
 
 const factoryParams: UseMakeOrderFactoryParams<any> = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

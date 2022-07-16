@@ -96,7 +96,7 @@
 <script>
 import { SfHeader, SfImage, SfIcon, SfButton, SfBadge, SfSearchBar, SfOverlay, SfMenuItem, SfLink, SfModal, SfList } from '@storefront-ui/vue';
 import { useUiState, useUiHelpers } from '~/composables';
-import { useCart, useWishlist, useUser, cartGetters, wishlistGetters, useCategory, categoryGetters, useFacet } from '@vue-storefront/vendure';
+import { useCart, useWishlist, useUser, cartGetters, wishlistGetters, useCategory, categoryGetters, useFacet } from '@mmeuli/vendure';
 import { computed, ref, onBeforeUnmount, watch } from '@vue/composition-api';
 import { onSSR } from '@vue-storefront/core';
 import LocaleSelector from '~/components/LocaleSelector';

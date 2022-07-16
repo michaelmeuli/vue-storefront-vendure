@@ -3,12 +3,12 @@ import {
   useUserShippingFactory,
   UseUserShippingFactoryParams
 } from '@vue-storefront/core';
-import type { CreateAddressInput, UpdateAddressInput } from '@vue-storefront/vendure-api';
+import type { CreateAddressInput, UpdateAddressInput } from '@mmeuli/vendure-api';
 import { useUser } from '../useUser';
 import type {
   UserBillingAddress as Address,
   UserBillingAddressItem as AddressItem
-} from '@vue-storefront/vendure-api';
+} from '@mmeuli/vendure-api';
 
 const params: UseUserShippingFactoryParams<Address, AddressItem> = {
   provide() {

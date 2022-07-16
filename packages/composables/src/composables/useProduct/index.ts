@@ -1,5 +1,5 @@
 import { useProductFactory, UseProduct, Context, CustomQuery, UseProductFactoryParams } from '@vue-storefront/core';
-import type { Product, ProductFilter, ProductParams } from '@vue-storefront/vendure-api';
+import type { Product, ProductFilter, ProductParams } from '@mmeuli/vendure-api';
 
 const useProductFactoryParams: UseProductFactoryParams<Product, ProductFilter> = {
   productsSearch: async (context: Context, params?: ProductParams & { customQuery?: CustomQuery }): Promise<Product> => {

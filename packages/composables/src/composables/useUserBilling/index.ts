@@ -8,7 +8,7 @@ import type {
   UpdateAddressInput,
   UserBillingAddress as Address,
   UserBillingAddressItem as AddressItem
-} from '@vue-storefront/vendure-api';
+} from '@mmeuli/vendure-api';
 import { useUser } from '../useUser';
 
 const params: UseUserBillingFactoryParams<Address, AddressItem> = {

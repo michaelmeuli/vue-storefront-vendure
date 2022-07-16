@@ -6,7 +6,7 @@ import {
   AgnosticBreadcrumb
 } from '@vue-storefront/core';
 import { getCurrentInstance } from '@vue/composition-api';
-import { ProductFilter, Product } from '@vue-storefront/vendure-api';
+import { ProductFilter, Product } from '@mmeuli/vendure-api';
 import { AgnosticProductOptions, AgnosticProductVariant } from '../types';
 import { createPrice } from '../helpers/_utils';
 import { ROOT_COLLECTION } from '../helpers';

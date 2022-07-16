@@ -1,5 +1,5 @@
 import { ForgotPasswordGetters } from '@vue-storefront/core';
-import { CurrentUser } from '@vue-storefront/vendure-api';
+import { CurrentUser } from '@mmeuli/vendure-api';
 import { ForgotPasswordResult } from '../types';
 
 // The getter is not used in Vendure implementation

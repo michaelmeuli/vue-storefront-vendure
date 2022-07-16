@@ -1,5 +1,5 @@
 import { Context } from '@nuxt/types';
-import { Order } from '@vue-storefront/vendure';
+import { Order } from '@mmeuli/vendure';
 import { ARRANGING_PAYMENT } from './constants';
 
 export const canEnterThankYou = (context: Context): boolean => Boolean(context.route.query?.order);

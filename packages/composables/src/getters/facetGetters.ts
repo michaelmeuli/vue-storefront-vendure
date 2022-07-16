@@ -8,7 +8,7 @@ import {
   AgnosticBreadcrumb,
   AgnosticFacet
 } from '@vue-storefront/core';
-import type { Collection, FacetSearchCriteria, PriceRange, SearchInput, SearchResponse, SearchResultSortParameter } from '@vue-storefront/vendure-api';
+import type { Collection, FacetSearchCriteria, PriceRange, SearchInput, SearchResponse, SearchResultSortParameter } from '@mmeuli/vendure-api';
 import { AgnosticProductVariant, AgnosticSearchResult, SearchResultValue } from '../types';
 import { ITEMS_PER_PAGE, ROOT_COLLECTION } from '../helpers';
 

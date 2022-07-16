@@ -4,7 +4,7 @@ import {
   AgnosticPrice,
   AgnosticTotals
 } from '@vue-storefront/core';
-import type { Wishlist, WishlistItem } from '@vue-storefront/vendure-api';
+import type { Wishlist, WishlistItem } from '@mmeuli/vendure-api';
 import { createPrice } from '../helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,5 +1,5 @@
 import { AgnosticAttribute } from '@vue-storefront/core';
-import { ProductCollection, CollectionResult, FacetValueResult, SearchResult, ResetPasswordResponse, RequestPasswordResetResponse } from '@vue-storefront/vendure-api';
+import { ProductCollection, CollectionResult, FacetValueResult, SearchResult, ResetPasswordResponse, RequestPasswordResetResponse } from '@mmeuli/vendure-api';
 
 export type TODO = any;
 
@@ -88,4 +88,4 @@ export interface Error {
   stack?: string;
 }
 
-export { OrderAddress, Order, Address } from '@vue-storefront/vendure-api';
+export { OrderAddress, Order, Address } from '@mmeuli/vendure-api';

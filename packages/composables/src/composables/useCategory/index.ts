@@ -1,5 +1,5 @@
 import { Context, CustomQuery } from '@vue-storefront/core';
-import type { CollectionList, CollectionParams } from '@vue-storefront/vendure-api';
+import type { CollectionList, CollectionParams } from '@mmeuli/vendure-api';
 import { UseCategory, useCategoryFactory, UseCategoryFactoryParams } from '../../factories';
 
 const useCategoryFactoryParams: UseCategoryFactoryParams<CollectionList, any> = {

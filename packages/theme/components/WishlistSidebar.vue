@@ -84,7 +84,7 @@ import {
   SfImage
 } from '@storefront-ui/vue';
 import { computed } from '@vue/composition-api';
-import { useWishlist, useUser, wishlistGetters } from '@vue-storefront/vendure';
+import { useWishlist, useUser, wishlistGetters } from '@mmeuli/vendure';
 import { useUiState } from '~/composables';
 export default {
   name: 'Wishlist',

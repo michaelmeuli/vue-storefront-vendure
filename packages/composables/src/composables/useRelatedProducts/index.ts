@@ -1,5 +1,5 @@
 import { Context } from '@vue-storefront/core';
-import type { SearchInput, SearchResponse } from '@vue-storefront/vendure-api';
+import type { SearchInput, SearchResponse } from '@mmeuli/vendure-api';
 import { UseRelatedProducts, useRelatedProductsFactory, UseRelatedProductsFactoryParams } from '../../factories';
 import { SearchResultParams } from '../useFacet/interfaces';
 

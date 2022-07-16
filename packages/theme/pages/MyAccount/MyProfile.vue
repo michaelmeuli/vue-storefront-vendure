@@ -53,7 +53,7 @@ import ProfileUpdateForm from '~/components/MyAccount/ProfileUpdateForm';
 import PasswordResetForm from '~/components/MyAccount/PasswordResetForm';
 import EmailUpdateForm from '~/components/MyAccount/EmailUpdateForm';
 import { SfTabs, SfInput, SfButton } from '@storefront-ui/vue';
-import { useUser, userGetters } from '@vue-storefront/vendure';
+import { useUser, userGetters } from '@mmeuli/vendure';
 import { onMounted } from '@vue/composition-api';
 extend('email', {
   ...email,

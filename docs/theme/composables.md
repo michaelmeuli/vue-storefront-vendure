@@ -1,7 +1,7 @@
 # Composables
 
 ::: warning
-These composables are not coming from `@vue-storefront/vendure` npm package but they are a part of theme that you have complete control as they are shipped with the template project and serve mainly a UI or mock function.
+These composables are not coming from `@mmeuli/vendure` npm package but they are a part of theme that you have complete control as they are shipped with the template project and serve mainly a UI or mock function.
 :::
 
 ## usePaymentProviderMock

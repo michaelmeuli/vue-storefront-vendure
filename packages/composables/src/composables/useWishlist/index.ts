@@ -4,7 +4,7 @@ import {
   useWishlistFactory,
   UseWishlistFactoryParams
 } from '@vue-storefront/core';
-import type { Wishlist, WishlistItem } from '@vue-storefront/vendure-api';
+import type { Wishlist, WishlistItem } from '@mmeuli/vendure-api';
 import type { AgnosticProductVariant } from '../../types';
 import { getWishlist, setWishlist } from '../../helpers';
 

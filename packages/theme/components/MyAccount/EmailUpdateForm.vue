@@ -38,7 +38,7 @@
 <script>
 import { ref } from '@vue/composition-api';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import { useUser, userGetters } from '@vue-storefront/vendure';
+import { useUser, userGetters } from '@mmeuli/vendure';
 import { SfInput, SfButton } from '@storefront-ui/vue';
 export default {
   name: 'ProfileUpdateForm',

@@ -2,7 +2,7 @@ import {
   Context
 } from '@vue-storefront/core';
 // TODO: ucomment later when working with use functionality
-// import type { User } from '@vue-storefront/vendure-api';
+// import type { User } from '@mmeuli/vendure-api';
 import type {
   UseUserUpdateParams as UpdateParams,
   UseUserRegisterParams as RegisterParams

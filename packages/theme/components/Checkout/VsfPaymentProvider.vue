@@ -43,7 +43,7 @@ import {
 } from '@storefront-ui/vue';
 import { ref, onMounted } from '@vue/composition-api';
 import { usePaymentProviderMock } from '@/composables/usePaymentProviderMock';
-import { usePayment } from '@vue-storefront/vendure';
+import { usePayment } from '@mmeuli/vendure';
 
 export default {
   name: 'VsfPaymentProvider',

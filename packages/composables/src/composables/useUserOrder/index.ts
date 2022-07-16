@@ -4,7 +4,7 @@ import {
   UseUserOrderFactoryParams
 } from '@vue-storefront/core';
 // TODO: uncomment later when working with order functionality
-// import type { Order } from '@vue-storefront/vendure-api';
+// import type { Order } from '@mmeuli/vendure-api';
 import type {
   useUserOrderSearchParams as SearchParams
 } from '../../types';

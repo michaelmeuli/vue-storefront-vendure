@@ -1,5 +1,5 @@
 import { UserGetters } from '@vue-storefront/core';
-import type { Customer } from '@vue-storefront/vendure-api';
+import type { Customer } from '@mmeuli/vendure-api';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getFirstName(user: Customer): string {

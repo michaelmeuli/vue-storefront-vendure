@@ -59,7 +59,7 @@ We do not provide getters for checkout and its parts.
 ```js
 // Payment.vue component
 
-import { usePayment } from '@vue-storefront/vendure';
+import { usePayment } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core'
 
 export default {

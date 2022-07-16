@@ -109,7 +109,7 @@ import {
 import InstagramFeed from '~/components/InstagramFeed.vue';
 import RelatedProducts from '~/components/RelatedProducts.vue';
 import { ref, computed } from '@vue/composition-api';
-import { useProduct, useCart, useRelatedProducts, productGetters, useReview, reviewGetters } from '@vue-storefront/vendure';
+import { useProduct, useCart, useRelatedProducts, productGetters, useReview, reviewGetters } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 import MobileStoreBanner from '~/components/MobileStoreBanner.vue';
 import LazyHydrate from 'vue-lazy-hydration';

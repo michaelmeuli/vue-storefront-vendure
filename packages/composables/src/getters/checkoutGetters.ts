@@ -1,4 +1,4 @@
-import type { ShippingMethod } from '@vue-storefront/vendure-api/src/types';
+import type { ShippingMethod } from '@mmeuli/vendure-api/src/types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getShippingMethodId(method: ShippingMethod): string {

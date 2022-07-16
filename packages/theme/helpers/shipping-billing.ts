@@ -1,4 +1,4 @@
-import { OrderAddress, Address } from '@vue-storefront/vendure';
+import { OrderAddress, Address } from '@mmeuli/vendure';
 import { COUNTRIES } from './constants';
 
 interface AddressForm {

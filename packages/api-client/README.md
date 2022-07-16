@@ -20,7 +20,7 @@ vsf init <project_name>
 Choose `Vendure (beta)` or use `Custom template from Github` option and type: `https://github.com/vuestorefront/template-vendure.git`.
 
 ```bash
-cd <project_name> 
+cd <project_name>
 ```
 
 ```bash
@@ -87,7 +87,7 @@ Want to contribute? Ping us on `vendure` channel on [our Discord](https://discor
     module.exports = {
       integrations: {
         vendure: {
-          location: '@vue-storefront/vendure-api/server',
+          location: '@mmeuli/vendure-api/server',
           configuration: {
             api: {
               uri: process.env.GRAPHQL_API,

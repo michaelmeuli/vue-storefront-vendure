@@ -41,7 +41,7 @@ interface ForgotPasswordGetters<FORGOT_PASSWORD_RESULT> {
 ## Examples
 
 ```js
-// request reset password 
+// request reset password
 <template>
   <form @submit="handleForgotten">
     <SfInput
@@ -54,11 +54,11 @@ interface ForgotPasswordGetters<FORGOT_PASSWORD_RESULT> {
     </SfButton>
   </form>
 </template>
-import { useProduct, productGetters } from '@vue-storefront/vendure';
+import { useProduct, productGetters } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core'
 import { computed } from '@vue/composition-api';
 
-export default {  
+export default {
   setup () {
     const form = ref({});
     const { request, error: forgotPasswordError, loading: forgotPasswordLoading } = useForgotPassword();

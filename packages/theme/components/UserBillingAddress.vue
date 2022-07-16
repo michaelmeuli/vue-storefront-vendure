@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { userBillingGetters } from '@vue-storefront/vendure';
+import { userBillingGetters } from '@mmeuli/vendure';
 export default {
   props: {
     address: {

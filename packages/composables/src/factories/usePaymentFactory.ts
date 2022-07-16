@@ -1,5 +1,5 @@
 import { CustomQuery, Context, FactoryParams, sharedRef, Logger, configureFactoryParams, ComputedProperty } from '@vue-storefront/core';
-import { PaymentInput } from '@vue-storefront/vendure-api';
+import { PaymentInput } from '@mmeuli/vendure-api';
 import { Ref, computed } from '@vue/composition-api';
 import { Error, Order } from '../types';
 

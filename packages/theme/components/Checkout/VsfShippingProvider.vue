@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { useCart, useShippingProvider, cartGetters } from '@vue-storefront/vendure';
+import { useCart, useShippingProvider, cartGetters } from '@mmeuli/vendure';
 import {
   SfHeading,
   SfButton,

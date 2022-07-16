@@ -1,4 +1,4 @@
-import { Customer } from '@vue-storefront/vendure-api';
+import { Customer } from '@mmeuli/vendure-api';
 
 export const mockedUser: Customer = {
   id: '1',

@@ -126,7 +126,7 @@ import {
   useCart,
   cartGetters,
   usePayment,
-} from '@vue-storefront/vendure';
+} from '@mmeuli/vendure';
 import { useStripe } from '@/composables/useStripe';
 
 export default {

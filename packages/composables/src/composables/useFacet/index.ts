@@ -3,7 +3,7 @@ import {
   FacetSearchResult,
   useFacetFactory
 } from '@vue-storefront/core';
-import type { SearchInput, SearchResponse } from '@vue-storefront/vendure-api';
+import type { SearchInput, SearchResponse } from '@mmeuli/vendure-api';
 import { SearchResultParams, UseFacetFactoryParams } from './interfaces';
 
 const useFacetFactoryParams: UseFacetFactoryParams<FacetSearchResult<SearchResponse>> = {

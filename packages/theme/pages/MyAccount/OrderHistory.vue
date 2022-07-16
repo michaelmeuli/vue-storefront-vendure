@@ -103,7 +103,7 @@ import {
   SfArrow
 } from '@storefront-ui/vue';
 import { computed, ref } from '@vue/composition-api';
-import { useUserOrder, orderGetters } from '@vue-storefront/vendure';
+import { useUserOrder, orderGetters } from '@mmeuli/vendure';
 import { AgnosticOrderStatus, onSSR } from '@vue-storefront/core';
 export default {
   name: 'PersonalDetails',

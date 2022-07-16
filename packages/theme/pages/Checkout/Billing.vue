@@ -205,7 +205,7 @@ import {
 } from '@storefront-ui/vue';
 import { ref, onMounted } from '@vue/composition-api';
 import { onSSR } from '@vue-storefront/core';
-import { useBilling, useShipping, useUserBilling } from '@vue-storefront/vendure';
+import { useBilling, useShipping, useUserBilling } from '@mmeuli/vendure';
 import { required, min, digits } from 'vee-validate/dist/rules';
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 import { mapAddressFormToOrderAddress, mapOrderAddressToAddressForm, COUNTRIES, getDefaultAddress, mapAddressToAddressForm } from '~/helpers';

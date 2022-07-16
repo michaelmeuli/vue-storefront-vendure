@@ -3,7 +3,7 @@ import {
   useShippingFactory,
   UseShippingParams
 } from '@vue-storefront/core';
-import type { CreateAddressInput, Order, OrderAddress } from '@vue-storefront/vendure-api';
+import type { CreateAddressInput, Order, OrderAddress } from '@mmeuli/vendure-api';
 import type {
   UseShippingAddParams as AddParams
 } from '../../types';

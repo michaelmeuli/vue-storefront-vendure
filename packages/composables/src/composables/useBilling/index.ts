@@ -3,7 +3,7 @@ import {
   useBillingFactory,
   UseBillingParams
 } from '@vue-storefront/core';
-import type { CreateAddressInput, Order, OrderAddress } from '@vue-storefront/vendure-api';
+import type { CreateAddressInput, Order, OrderAddress } from '@mmeuli/vendure-api';
 import { BILLING_TYPE } from '../../helpers';
 import type {
   UseBillingAddParams as AddParams

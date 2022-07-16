@@ -1,4 +1,4 @@
-import { Wishlist } from '@vue-storefront/vendure-api';
+import { Wishlist } from '@mmeuli/vendure-api';
 
 export const createPrice = (price: number): number => {
   return price ? price / 100 : 0;

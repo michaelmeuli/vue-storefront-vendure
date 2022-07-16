@@ -62,7 +62,7 @@ interface UPDATE_USER_PARAMS {
 }
 ```
 
-- `updateEmail` - method used to update user email. Accepts a `params` object: 
+- `updateEmail` - method used to update user email. Accepts a `params` object:
 
   - `newEmail: string`
 
@@ -108,7 +108,7 @@ interface UserGetters {
 ## Example
 
 ```js
-import { useUser } from '@vue-storefront/vendure';
+import { useUser } from '@mmeuli/vendure';
 
 export default {
   setup () {

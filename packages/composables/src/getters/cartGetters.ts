@@ -6,7 +6,7 @@ import {
   AgnosticDiscount,
   AgnosticAttribute
 } from '@vue-storefront/core';
-import type { Order, OrderLine } from '@vue-storefront/vendure-api';
+import type { Order, OrderLine } from '@mmeuli/vendure-api';
 import { createPrice } from '../helpers/_utils';
 
 interface ExtendedCartGetters extends CartGetters<Order, OrderLine> {

@@ -46,7 +46,7 @@
 <script>
 import { SfBreadcrumbs, SfContentPages } from '@storefront-ui/vue';
 import { computed } from '@vue/composition-api';
-import { useUser } from '@vue-storefront/vendure';
+import { useUser } from '@mmeuli/vendure';
 import MyProfile from './MyAccount/MyProfile';
 import ShippingDetails from './MyAccount/ShippingDetails';
 import BillingDetails from './MyAccount/BillingDetails';

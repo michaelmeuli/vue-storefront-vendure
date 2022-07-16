@@ -18,13 +18,13 @@
 * `load` - function required to fetch cart from a server or create brand new if it doesn't exist. This method accepts a single `params` object. The `params` has the following option:
 
   * `customQuery?: customQuery`
-  
+
 ```ts
 type CustomQuery = {
   getBasicProfile: string
 }
 ```
-  
+
 * `addItem` - function for adding products to the cart. This method accepts a single `params` object. The `params` has the following options:
 
   * `product: AgnosticProductVariant`
@@ -53,7 +53,7 @@ type CustomQuery = {
   updateCart: string
 }
 ```
-  
+
 * `updateItemQty` - function for updating quantity of a product that is already in the cart. This method accepts a single `params` object. The `params` has the following options:
 
   * `product: OrderLine`
@@ -69,7 +69,7 @@ type CustomQuery = {
 ```
 
 <https://www.vendure.io/docs/graphql-api/shop/object-types/#orderline>
-  
+
 * `removeItem` - function for removing a product that currently is in the cart. This method accepts a single `params` object. The `params` has the following options:
 
   * `product: OrderLine`
@@ -83,7 +83,7 @@ type CustomQuery = {
 ```
 
 <https://www.vendure.io/docs/graphql-api/shop/object-types/#orderline>
-  
+
 * `isInCart` - function for checking if a product is currently in the cart.
 
 * `clear` - function for removing all items currently stored in cart (TBD).
@@ -99,7 +99,7 @@ type CustomQuery = {
   updateCart: string
 }
 ```
-  
+
 * `removeCoupon` - function for removing coupon applied to cart. This method accepts a single `params` object. The `params` has the following options:
 
   * `coupon: string`
@@ -115,7 +115,7 @@ type CustomQuery = {
 ::: warning
 This will soon have to be refactored as applyCoupon and removeCoupon accept the same code but in a form of two different parameters (coupon and couponCode). So in the future we will be changing the coupon parameter here to couponCode
 :::
-  
+
 * `loading: boolean` - a reactive object containing information about loading state of the cart.
 
 * `error: UseCartErrors` - reactive object containing the error message, if some properties failed for any reason.
@@ -137,7 +137,7 @@ interface UseCartErrors {
 * `getTotals` - returns cart totals.
 
 * `getItems` - returns all items from cart.
-  
+
 * `getItemName` - returns product name.
 
 * `getItemImage` - returns product image.
@@ -219,7 +219,7 @@ interface AgnosticDiscount {
 ## Example
 
 ```js
-import { useCart, cartGetters } from '@vue-storefront/vendure';
+import { useCart, cartGetters } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 
 export default {

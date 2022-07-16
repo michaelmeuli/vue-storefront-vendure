@@ -66,7 +66,7 @@ type AgnosticCategoryNavigation = {
 ```js
 // Header.vue component
 
-import { useCategory, categoryGetters } from '@vue-storefront/vendure';
+import { useCategory, categoryGetters } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core'
 
 export default {

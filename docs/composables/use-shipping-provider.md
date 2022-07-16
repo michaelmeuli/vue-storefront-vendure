@@ -11,7 +11,7 @@
 * `load` - function for fetching shipping method. When invoked, it requests data from the API and populates the `response` key inside the `state` property. This method accepts a single optional `params` object. The `params` has the following option:
 
   * `customQuery?: CustomQuery`
-  
+
 ```ts
 type CustomQuery = {
   getBasicProfile: string
@@ -24,7 +24,7 @@ type CustomQuery = {
 This integration does not use the `save` method. Instead a direct call from the theme to the API Client is being made and the response is saved as a new Cart object to update prices, details, etc. It works as follows:
 
 ```ts
-import { useCart, useShippingProvider } from '@vue-storefront/vendure';
+import { useCart, useShippingProvider } from '@mmeuli/vendure';
 
 export default {
   setup () {
@@ -62,7 +62,7 @@ We do not provide getters for checkout and its parts.
 ## Example
 
 ```js
-import { useShippingProvider } from '@vue-storefront/vendure';
+import { useShippingProvider } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 
 export default {
@@ -72,7 +72,7 @@ export default {
     onSSR(async () => {
       await load();
     });
-    
+
     return {
       state
     };

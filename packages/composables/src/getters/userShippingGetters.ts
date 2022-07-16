@@ -3,7 +3,7 @@ import type {
   Address,
   UserShippingAddressItem as AddressItem,
   UserShippingAddressSearchCriteria
-} from '@vue-storefront/vendure-api';
+} from '@mmeuli/vendure-api';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getAddresses(shipping: Address[], criteria?: UserShippingAddressSearchCriteria): AddressItem[] {

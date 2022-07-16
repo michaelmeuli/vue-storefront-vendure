@@ -45,7 +45,7 @@ We do not provide getters for related products.
 ```js
 // Product.vue component
 
-import { useRelatedProducts } from '@vue-storefront/vendure';
+import { useRelatedProducts } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core'
 
 export default {

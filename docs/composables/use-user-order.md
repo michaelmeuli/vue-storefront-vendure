@@ -65,7 +65,7 @@
 ## Example
 
 ```js
-import { useUserOrder, orderGetters } from '@vue-storefront/vendure';
+import { useUserOrder, orderGetters } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 
 export default {

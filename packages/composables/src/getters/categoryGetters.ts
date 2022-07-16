@@ -1,5 +1,5 @@
 import { AgnosticCategoryTree, CategoryGetters } from '@vue-storefront/core';
-import type { Collection, CollectionList } from '@vue-storefront/vendure-api';
+import type { Collection, CollectionList } from '@mmeuli/vendure-api';
 import { ROOT_COLLECTION } from '../helpers';
 import { AgnosticCategoryNavigation } from '../types';
 

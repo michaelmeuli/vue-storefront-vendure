@@ -12,7 +12,7 @@
 * `load` - function for fetching shipping address. When invoked, it requests data from the API and populates `shipping` property. This method accepts a single optional `params` object. The `params` has the following option:
 
   * `customQuery?: CustomQuery`
-  
+
 ```ts
 type CustomQuery = {
   getBasicProfile: string
@@ -55,7 +55,7 @@ We do not provide getters for checkout and its parts.
 ## Example
 
 ```js
-import { useShipping } from '@vue-storefront/vendure';
+import { useShipping } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 
 export default {

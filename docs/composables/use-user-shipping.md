@@ -140,7 +140,7 @@
 
 ```typescript
 import { onSSR } from '@vue-storefront/core';
-import { useUserShipping, userShippingGetters } from '@vue-storefront/vendure';
+import { useUserShipping, userShippingGetters } from '@mmeuli/vendure';
 
 export default {
   setup() {

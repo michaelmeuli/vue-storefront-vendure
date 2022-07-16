@@ -49,8 +49,8 @@ export default {
       '@vue-storefront/nuxt',
       {
         useRawSource: {
-          dev: ['@vue-storefront/vendure', '@vue-storefront/core'],
-          prod: ['@vue-storefront/vendure', '@vue-storefront/core']
+          dev: ['@mmeuli/vendure', '@vue-storefront/core'],
+          prod: ['@mmeuli/vendure', '@vue-storefront/core']
         }
       }
     ],
@@ -65,7 +65,7 @@ export default {
     /* project-only-start
     ['@vue-storefront/nuxt-theme'],
     project-only-end */
-    ['@vue-storefront/vendure/nuxt', {
+    ['@mmeuli/vendure/nuxt', {
       i18n: { useNuxtI18nConfig: true }
     }]
   ],
@@ -75,7 +75,7 @@ export default {
     }],
     'cookie-universal-nuxt',
     'vue-scrollto/nuxt',
-    '@vue-storefront/middleware/nuxt'       
+    '@vue-storefront/middleware/nuxt'
   ],
   i18n: {
     currency: 'USD',

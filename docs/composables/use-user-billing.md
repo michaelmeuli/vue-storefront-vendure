@@ -130,7 +130,7 @@
 
 ```typescript
 import { onSSR } from '@vue-storefront/core';
-import { useUserBilling, userBillingGetters } from '@vue-storefront/vendure';
+import { useUserBilling, userBillingGetters } from '@mmeuli/vendure';
 
 export default {
   setup() {

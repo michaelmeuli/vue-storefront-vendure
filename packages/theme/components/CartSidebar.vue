@@ -119,7 +119,7 @@ import {
   SfQuantitySelector
 } from '@storefront-ui/vue';
 import { computed } from '@vue/composition-api';
-import { useCart, useUser, cartGetters } from '@vue-storefront/vendure';
+import { useCart, useUser, cartGetters } from '@mmeuli/vendure';
 import { useUiState } from '~/composables';
 
 export default {

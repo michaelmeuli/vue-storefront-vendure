@@ -117,7 +117,7 @@ import {
   SfImage
 } from '@storefront-ui/vue';
 import { ref, watch, computed } from '@nuxtjs/composition-api';
-import { productGetters } from '@vue-storefront/vendure';
+import { productGetters } from '@mmeuli/vendure';
 export default {
   name: 'SearchResults',
   components: {

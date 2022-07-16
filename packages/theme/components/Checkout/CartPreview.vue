@@ -55,7 +55,7 @@ import {
   SfCircleIcon
 } from '@storefront-ui/vue';
 import { computed, ref } from '@vue/composition-api';
-import { useCart, cartGetters } from '@vue-storefront/vendure';
+import { useCart, cartGetters } from '@mmeuli/vendure';
 import { getCalculatedPrice } from '~/helpers';
 
 export default {

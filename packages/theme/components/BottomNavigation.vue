@@ -34,7 +34,7 @@
 <script>
 import { SfBottomNavigation, SfIcon, SfCircleIcon } from '@storefront-ui/vue';
 import { useUiState } from '~/composables';
-import { useUser } from '@vue-storefront/vendure';
+import { useUser } from '@mmeuli/vendure';
 export default {
   components: {
     SfBottomNavigation,

@@ -1,4 +1,4 @@
-import { Order } from '@vue-storefront/vendure-api';
+import { Order } from '@mmeuli/vendure-api';
 
 export const mockedCart: Order = {
   id: '33',

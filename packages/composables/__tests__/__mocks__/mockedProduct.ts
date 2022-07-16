@@ -1,4 +1,4 @@
-import { Product } from '@vue-storefront/vendure-api';
+import { Product } from '@mmeuli/vendure-api';
 import { AgnosticProductOptions, AgnosticProductVariant } from '../../src/types';
 import { AgnosticBreadcrumb } from '@vue-storefront/core';
 

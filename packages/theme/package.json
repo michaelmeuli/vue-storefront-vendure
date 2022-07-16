@@ -1,5 +1,5 @@
 {
-  "name": "@vue-storefront/vendure-theme",
+  "name": "@mmeuli/vendure-theme",
   "version": "1.0.0",
   "scripts": {
     "build": "nuxt build -m",
@@ -25,7 +25,7 @@
     "@vue-storefront/middleware": "~2.4.1",
     "@vue-storefront/nuxt": "~2.4.1",
     "@vue-storefront/nuxt-theme": "~2.4.1",
-    "@vue-storefront/vendure": "1.2.0",
+    "@mmeuli/vendure": "1.2.2",
     "@vue-stripe/vue-stripe": "^4.4.2",
     "awesome-phonenumber": "^2.51.2",
     "cookie-universal-nuxt": "^2.1.5",

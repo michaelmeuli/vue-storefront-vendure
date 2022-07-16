@@ -1,5 +1,5 @@
 import { Context, CustomQuery } from '@vue-storefront/core';
-import { PaymentMethodQuote } from '@vue-storefront/vendure-api';
+import { PaymentMethodQuote } from '@mmeuli/vendure-api';
 import { UsePayment, usePaymentFactory, UsePaymentFactoryParams } from '../../factories';
 
 const usePaymentFactoryParams: UsePaymentFactoryParams<PaymentMethodQuote[]> = {

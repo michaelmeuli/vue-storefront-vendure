@@ -89,7 +89,7 @@ import { ref, onMounted } from '@vue/composition-api';
 import { required, min, digits, email } from 'vee-validate/dist/rules';
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 import { useVSFContext } from '@vue-storefront/core';
-import { useCart } from '@vue-storefront/vendure';
+import { useCart } from '@mmeuli/vendure';
 import { EMAIL_ADDRESS_CONFLICT_ERROR } from '~/helpers';
 
 extend('required', {

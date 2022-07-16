@@ -1,5 +1,5 @@
 import { Context, CustomQuery, FactoryParams } from '@vue-storefront/core';
-import { SearchResponse } from '@vue-storefront/vendure-api';
+import { SearchResponse } from '@mmeuli/vendure-api';
 import { SearchResultValue } from '../../../types';
 
 export type SearchResultParams<SEARCH_DATA, SEARCH_INPUT> = SearchResultValue<SEARCH_DATA, SEARCH_INPUT> & { customQuery?: CustomQuery }

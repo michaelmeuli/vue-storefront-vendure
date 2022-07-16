@@ -1,5 +1,5 @@
 import { UserOrderGetters } from '@vue-storefront/core';
-import type { OrderList, Order, OrderItem, OrderLine } from '@vue-storefront/vendure-api';
+import type { OrderList, Order, OrderItem, OrderLine } from '@mmeuli/vendure-api';
 import { createPrice } from '../helpers';
 
 // TODO: to be used later

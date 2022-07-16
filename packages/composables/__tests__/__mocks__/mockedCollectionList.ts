@@ -1,4 +1,4 @@
-import { CollectionList } from '@vue-storefront/vendure-api';
+import { CollectionList } from '@mmeuli/vendure-api';
 
 export const mockedCollectionList: CollectionList = {
   totalItems: 9,

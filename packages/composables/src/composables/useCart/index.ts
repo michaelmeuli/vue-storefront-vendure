@@ -7,7 +7,7 @@ import type {
   CouponCodeInvalidError,
   Order,
   OrderLine
-} from '@vue-storefront/vendure-api';
+} from '@mmeuli/vendure-api';
 import { AgnosticProductVariant } from '../../types';
 
 // Return types from Vendure mutations on Cart (Order) are unions of Order and something else (i.e. OrderModificationError).

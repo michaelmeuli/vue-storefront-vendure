@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { userShippingGetters } from '@vue-storefront/vendure';
+import { userShippingGetters } from '@mmeuli/vendure';
 export default {
   props: {
     address: {

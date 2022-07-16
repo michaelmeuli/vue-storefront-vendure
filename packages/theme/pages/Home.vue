@@ -51,7 +51,7 @@ import {
 import InstagramFeed from '~/components/InstagramFeed.vue';
 import LazyHydrate from 'vue-lazy-hydration';
 import { useContext, computed } from '@nuxtjs/composition-api';
-import { useFacet } from '@vue-storefront/vendure';
+import { useFacet } from '@mmeuli/vendure';
 import { onSSR } from '@vue-storefront/core';
 import { getCalculatedPrice } from '~/helpers';
 

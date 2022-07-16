@@ -111,7 +111,7 @@ This composable is implemented using Local Storage as Vendure does not yet have 
 
 ```typescript
 import { onSSR } from '@vue-storefront/core';
-import { useWishlist, wishlistGetters } from '@vue-storefront/vendure';
+import { useWishlist, wishlistGetters } from '@mmeuli/vendure';
 
 export default {
   setup() {

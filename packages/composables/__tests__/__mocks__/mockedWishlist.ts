@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Wishlist } from "@vue-storefront/vendure-api";
+import { Wishlist } from "@mmeuli/vendure-api";
 
 export class LocalStorageMock {
   private store = {};
@@ -25,7 +25,7 @@ export class LocalStorageMock {
   removeItem(key) {
     delete this.store[key];
   }
-  
+
   key(index: number) {
     return '';
   }
