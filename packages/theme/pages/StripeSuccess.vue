@@ -1,5 +1,5 @@
 <template>
-  <div id="thank-you">
+  <div v-if="isSuccess" id="thank-you">
     <SfCallToAction
       v-e2e="'thank-you-banner'"
       class="banner"
@@ -11,7 +11,7 @@
     >
       <template #description>
         <div class="banner__order-number">
-          <span>{{ $t('Order No.') }}</span>
+          <span></span>
           <strong>Zahlung erfolgreich</strong>
         </div>
       </template>

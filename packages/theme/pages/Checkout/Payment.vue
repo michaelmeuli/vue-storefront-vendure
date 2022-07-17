@@ -199,10 +199,6 @@ export default {
 
     const processStripeOrder = async () => {
       await setStripe();
-      console.log(
-        'secret.value.createStripePaymentIntent: ',
-        secret.value.createStripePaymentIntent
-      );
       const stripePath = {
         name: 'stripe',
         query: {
